@@ -1,0 +1,88 @@
+<view style="padding:30rpx;box-sizing: border-box;">
+  <!-- 起始时间 结束时间 -->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <!-- 清除图标 -->
+      <text wx:if="{{closeIconShow}}" bindtap="closeIcon" class="iconfont iconclose closeIcon"></text>
+      <!-- 搜索框 -->
+      <view class="weui-search-bar__box searchInput" bindtap="selectTimer">
+        <icon class="weui-icon-search_in-box" type="search" size="24"></icon>
+        <input value="{{chooseTime}}" type="text" disabled="{{true}}" class="weui-search-bar__input" placeholder="按时间搜索"
+          style="color:#a8a8a8;" />
+      </view>
+    </view>
+  </view>
+  <!-- 循环维护详情列表 -->
+  <view class="questionnaire  commonStyle">
+    <view class="questionImg">
+      <text class="fontWeight quesRecord maintainRecord">反馈历史</text>
+    </view>
+    <!-- 循环卡片 -->
+    <block wx:for="{{ManufacturerList}}" wx:key="item">
+      <view class="report" style="margin-bottom:20rpx">
+        <block wx:if="{{item.status == 1}}">
+          <text class="checkDetail" data-id="{{item.id}}" bindtap="checkDetail">查看详情</text>
+        </block>
+        <view style=" margin-bottom:20rpx">
+          <text>状态：</text>
+          <block wx:if="{{item.status == 0}}">
+            <text class="fontWeight" style="color:#FDBD2F">未回复</text>
+          </block>
+          <block wx:else>
+            <text class="fontWeight" style="color:#1ADCA9">已回复</text>
+          </block>
+        </view>
+        <view style=" margin-bottom:20rpx">
+          <text>产品：</text>
+          <text class="fontWeight">{{item.vendorName}} {{item.goodsName}} {{item.goodsModel}}</text>
+        </view>
+        <view style=" margin-bottom:20rpx">
+          <text>描述：</text>
+          <text class="fontWeight">{{item.content}}</text>
+        </view>
+        <view style=" margin-bottom:20rpx">
+          <text>记录时间：</text>
+          <text class="fontWeight">{{item.createTime}}</text>
+        </view>
+        <view class="questionImg">
+          <block wx:for="{{item.photoList}}" wx:for-item="subItem" wx:key="index">
+            <image wx:if="{{subItem.photoUrl}}" src="{{subItem.photoUrl}}" bindtap="preViewImage" data-url="{{subItem.photoUrl}}"></image>
+          </block>
+        </view>
+      </view>
+    </block>
+    <view>
+    </view>
+  </view>
+  <loadmore show="{{loadmoreShow}}" type="{{loadmoreType}}" loading-text="加载中,请稍后..." end-text="我是有底线的" line="{{true}}">
+  </loadmore>
+  <!-- 时间模态框 -->
+  <l-popup show="{{searchTimerPopupShow}}" content-align="bottom">
+    <view class="popup_box">
+      <view class="popup_header">
+        <text class="clear" bindtap="clear">取消</text>
+        <text class="done" bindtap="done">确定</text>
+      </view>
+      <view class="popup_type_title">
+        <text class="{{timeType==1?'active':''}}" bindtap="changeTimerType" data-type="1">{{startTime}}</text>
+        <text>——</text>
+        <text class="{{timeType==2?'active':''}}" bindtap="changeTimerType" data-type="2">{{endTime}}</text>
+      </view>
+      <view class="popup_type_pick">
+        <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 400rpx;" value="{{value}}"
+          bindchange="bindChange">
+          <picker-view-column>
+            <view wx:for="{{years}}" wx:key="years" style="line-height: 100rpx; text-align: center;">{{item}}年</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{months}}" wx:key="months" style="line-height: 100rpx; text-align: center;">{{item}}月
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{days}}" wx:key="days" style="line-height: 100rpx; text-align: center;">{{item}}日</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </l-popup>
+</view>

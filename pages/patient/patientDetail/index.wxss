@@ -1,0 +1,227 @@
+.box {
+  padding: 40rpx;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  border-radius: 30rpx;
+  padding: 30rpx 40rpx 24rpx 40rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.userInfoLeft {
+  display: flex;
+  width: 80%;
+}
+
+.userInfoRight {
+  display: flex;
+  align-items: center;
+  width: 20%;
+}
+
+.maintainInfo {
+  width: 100%;
+}
+
+.patientImg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+}
+
+.nurseRecord {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: #1ADCA9;
+}
+
+.nurseIcon {
+  font-size: 50rpx;
+  color: #fff;
+}
+
+.patientName {
+  font-weight: 700;
+  margin: 10rpx 0 10rpx 0;
+  display: block;
+}
+
+.patientName_ques {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  color: #000;
+}
+
+.userInfoBtn {
+  color: #A8A8A8;
+  padding: 6rpx 20rpx;
+  border-radius: 40rpx;
+  border: 1px solid #A8A8A8;
+}
+
+.dayBtn {
+  color: #A8A8A8;
+  padding: 4rpx 15rpx;
+  border-radius: 40rpx;
+  border: 1px solid #A8A8A8;
+  font-size: 24rpx;
+}
+
+.userInfoBtn,
+.history,
+.more {
+  margin-left: auto;
+  font-size: 28rpx;
+}
+
+.problemRecord {
+  padding-bottom: 20rpx;
+}
+
+.disFlex {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 28rpx;
+  padding: 20rpx 0;
+}
+
+.jtImg {
+  width: 48rpx !important;
+  height: 48rpx !important;
+}
+
+.content {
+  position: relative;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.commonStyle {
+  font-size: 28rpx;
+}
+
+.questionImg {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10rpx;
+  /* justify-content: flex-start; */
+}
+
+.questionImg image {
+  margin: 10rpx 0;
+  margin-left: 10rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.questionnaire {
+  padding-bottom: 20rpx;
+}
+
+.isOver {
+  display: flex;
+}
+
+.fontWeight {
+  font-weight: 700;
+}
+
+.quesRecord {
+  font-size: 32rpx;
+}
+
+.isFinish {
+  margin-top: 16rpx;
+}
+
+.maintain {
+  display: flex;
+  margin-top: 20rpx;
+  padding: 20rpx 0;
+  border-top: 2rpx solid #f5f5f5;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.maintainTime {
+  margin-bottom: 20rpx;
+}
+
+.report {
+  min-height: 200rpx;
+  border-radius: 30rpx;
+  padding: 20rpx 20rpx 14rpx 30rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.reportImg {
+  display: flex;
+  padding: 20rpx 0;
+  background-color: #F3F3F3;
+  border-radius: 10rpx
+}
+
+.reportImg image {
+  margin-left: 10rpx;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  width: 144rpx;
+  height: 144rpx;
+}
+
+.sendMessage,
+.removeBinding {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20rpx 40rpx;
+  border-radius: 60rpx;
+  color: #fff;
+}
+
+.sendMessage {
+  background-color: #1ADCA9;
+}
+
+.removeBinding {
+  background-color: #FDBD2F;
+}
+
+.content_box {
+  display: flex;
+  align-items: center;
+}
+
+.fontSize {
+  font-size: 28rpx;
+}
+
+.content_box {
+  margin: 20rpx 0;
+}
+
+.content_box view {
+  flex: 1;
+}
+
+.lookPos {
+  position: absolute;
+  right: 10rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}

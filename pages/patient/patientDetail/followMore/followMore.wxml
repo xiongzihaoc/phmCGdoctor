@@ -1,0 +1,43 @@
+<view class="box">
+	<view class="noFinish">
+		<!-- 未完成问卷 -->
+		<view class="noFinish_title ">
+			<text class="title_w">未完成问卷</text>
+			<text class="title_num"> ({{isFinshNum.unfinish}})</text>
+		</view>
+		<view class="noFinish_content">
+			<block wx:for="{{followList}}" wx:key="id" wx:if="{{item.status == 0}}">
+				<view class="detail">
+					<image src="/images/finish.png"></image>
+					<view style="margin-left:30rpx;">
+						<text class="detail_title"
+							style="width:460rpx;  white-space: nowrap;  overflow: hidden;text-overflow:ellipsis;">{{item.questionnaireName}}</text>
+						<text class="detail_time">推送时间：{{item.createTime}}</text>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="isFinish">
+		<!-- 已完成问卷 -->
+		<view class="isFinish_title">
+			<text class="title_w">已完成问卷</text>
+			<text class="title_num"> ({{isFinshNum.finish}})</text>
+		</view>
+		<view class="isFinish_content">
+			<block wx:for="{{followList}}" wx:key="id" wx:if="{{item.status == 1}}">
+				<view class="detail">
+					<image src="/images/finish_is.png"></image>
+					<view class="detail_word_box">
+						<text class="detail_title">{{item.questionnaireName}}</text>
+						<text class="detail_time">推送时间：{{item.createTime}}</text>
+					</view>
+					<view style="margin-left:auto;">
+						<text class="detail_word" bindtap="jumpDetail" data-anUuid="{{item.anUuid}}"
+							data-name="{{item.questionnaireName}}">详情</text>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>

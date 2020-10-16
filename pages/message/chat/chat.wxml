@@ -1,0 +1,116 @@
+<wxs module="date" src="../../../utils/date.wxs"></wxs>
+<view style="width:100vm">
+  <scroll-view class="scorllView" scroll-into-view="{{scrollTopItem}}" scroll-y="true" scroll-with-animation
+    refresher-enabled="{{true}}" refresher-default-style="none" bindscrolltoupper="getMoreMsgList"
+    refresher-triggered="{{scrollrefresher}}" bindrefresherrestore="">
+    <view class='scrollMsg'>
+      <block wx:key wx:for='{{msgList}}' wx:for-index="index" wx:key="index">
+        <!-- 单个消息1 客服发出（左） -->
+        <view style="text-align: center">
+          <text class="time_diff_text">{{date.timedifference(msgList,index)}}</text>
+        </view>
+
+        <view wx:if="{{item.flow == 'in'}}" class="msg_list_left_box" id="item{{index}}">
+          <view style='margin-right:20rpx;margin-top:10rpx;width: 60rpx;height: 60rpx;'>
+            <image class="headerImage" src='{{userHeaderUrl==""? "/images/foot.jpg":userHeaderUrl}}'></image>
+          </view>
+          <image wx:if="{{item.type=='TIMImageElem'}}"
+            style="width:{{item.payload.width}}px;height:{{item.payload.height}}px;" src="{{item.payload.url}}"
+            bindtap="preViewImg" data-url="{{item.payload.url}}"></image>
+          <text wx:elif="{{item.type=='TIMTextElem'}}" class='leftMsg'>{{item.payload.text}}</text>
+          <view wx:elif="{{item.type=='TIMCustomElem'}}" class='customProblemleft'>
+            <view wx:if="{{item.payload.data=='pro'}}" style="padding:10rpx 5rpx 0 10rpx">
+              <view>症状：{{date.paseJson(item.payload.extension).symptom}}</view>
+              <view style="padding-top:10rpx">描述：{{date.paseJson(item.payload.extension).description}}</view>
+              <view class='reportImage' wx:for="{{date.paseJson(item.payload.extension).photos}}"
+                wx:for-item="imageItem" wx:for-index="index" wx:key="index" bindtap="preViewImg"
+                data-url="{{imageItem}}" data-index="{{index}}">
+                <image src='{{imageItem}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+          <view wx:elif="{{item.type=='TIMSoundElem'}}" class='leftvoice' style="width:{{item.payload.width}}rpx"
+            bindtap="startAudio" data-index="{{index}}" data-url="{{item.payload.url}}">
+            <view class="left_secound_box">
+              <view class="voice_bg_left">
+                <view wx:if="{{isStartVoice && playingVoiceIndex==index}}">
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==1}}" src="/images/voice_start_left_1.png">
+                  </image>
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==2}}" src="/images/voice_start_left_2.png">
+                  </image>
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==3}}" src="/images/voice_start_left_3.png">
+                  </image>
+                </view>
+                <image wx:else class="voice_item" src="/images/voice_start_left_3.png"></image>
+              </view>
+              <text>{{item.payload.second}}"</text>
+            </view>
+          </view>
+
+        </view>
+        <!-- 单个消息2 用户发出（右） -->
+        <view wx:else class="msg_list_right_box" id="item{{index}}" data-index="{{index}}" bindtap="bindMsgClick">
+          <image wx:if="{{item.type=='TIMImageElem'}}"
+            style="width:{{item.payload.width}}px;height:{{item.payload.height}}px;" src="{{item.payload.url}}"
+            bindtap="preViewImg" data-url="{{item.payload.url}}"></image>
+          <text wx:elif="{{item.type=='TIMTextElem'}}" class='rightMsg'>{{item.payload.text}}</text>
+          <view wx:elif="{{item.type=='TIMSoundElem'}}" class='rightvoice' style="width:{{item.payload.width}}rpx"
+            bindtap="startAudio" data-index="{{index}}" data-url="{{item.payload.url}}">
+            <view class="right_secound_box">
+              <text>{{item.payload.second}}"</text>
+              <view class="voice_bg">
+                <view wx:if="{{isStartVoice && playingVoiceIndex==index}}">
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==1}}" src="/images/voice_start_right_1.png">
+                  </image>
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==2}}" src="/images/voice_start_right_2.png">
+                  </image>
+                  <image class="voice_item" wx:if="{{voiceStartImgIndex==3}}" src="/images/voice_start_right_3.png">
+                  </image>
+                </view>
+                <image wx:else class="voice_item" src="/images/voice_start_right_3.png"></image>
+              </view>
+            </view>
+          </view>
+          <view wx:elif="{{item.type=='TIMCustomElem'}}" class='customProblemright'>
+            <view wx:if="{{item.payload.data=='pro'}}" style="padding:10rpx 5rpx 0 10rpx">
+              <view>症状：{{date.paseJson(item.payload.extension).symptom}}</view>
+              <view style="padding-top:10rpx">描述：{{date.paseJson(item.payload.extension).description}}</view>
+              <view class='reportImage' wx:for="{{date.paseJson(item.payload.extension).photos}}"
+                wx:for-item="imageItem" wx:for-index="index" wx:key="{{index}}" bindtap="preViewImg"
+                data-url="{{imageItem}}" data-index="{{index}}">
+                <image src='{{imageItem}}' mode='aspectFill'></image>
+              </view>
+            </view>
+          </view>
+          <view style='margin-left:20rpx;margin-top:10rpx;width: 60rpx;height: 60rpx;'>
+            <image class="headerImage" src='{{headerUrl==""? "/images/foot.jpg":headerUrl}}'></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="hud-container" wx:if="{{status != state.normal}}">
+    <view class="hud-background"></view>
+    <view class="hud-body">
+      <image src="/images/mic.png" />
+      <view class="tip {{status == state.cancel ? 'warning' : ''}}">{{tips[status]}}</view>
+    </view>
+  </view>
+  <view class='inputRoom'>
+    <view wx:if="{{!isVoice}}" style="display:flex">
+      <image class="send_voice_img" src='/images/consult_voice_icon.png' mode='widthFix' bindtap="checkSendVoice">
+      </image>
+      <input bindconfirm='sendTxtMsg' adjust-position='{{true}}' value='{{txtMsg}}' confirm-type='send'
+        bindfocus='focus' bindinput="bindSendMsgInput"></input>
+    </view>
+    <view wx:else style="display:flex;justify-content: center;">
+      <image class="send_text_img" src='/images/consult_text_icon.png' mode='widthFix' bindtap="checkSendTxt"></image>
+      <text class="voice_text" bindlongtap="startVoice" bindtouchstart="touchStart" bindtouchmove="touchMove"
+        bindtouchend="touchEnd">{{tips[status]}}</text>
+    </view>
+
+    <image wx:if="{{!isSendBtn}}" class="send_image_img" src='/images/consult_image_icon.png' mode='widthFix'
+      bindtap="sendImgMsg"></image>
+    <text wx:else class="send_msg" bindtap="sendTxtMsg">发送</text>
+  </view>
+</view>

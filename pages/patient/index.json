@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "loadmore":"/miniprogram_npm/lin-ui/loadmore/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index"
+  },
+  "navigationBarTitleText": "患者列表"
+}

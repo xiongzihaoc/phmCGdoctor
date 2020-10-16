@@ -1,0 +1,238 @@
+.box {
+  padding: 30rpx;
+}
+
+.fontWeight {
+  font-weight: 700;
+}
+
+.productInformation_title {
+  margin: 20rpx 0;
+}
+
+.productInformation_mian {
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.productInformation_mian image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.brand,
+.model {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.brand_box,
+.model_box {
+  display: flex;
+  align-items: center;
+}
+.brand_box picker,
+.model_box picker {
+  font-weight: 700;
+}
+
+textarea {
+  width: 100%;
+  height: 300rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.uploadImg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.replayImg {
+  position: relative;
+  display: inline-block;
+  width: 25%;
+  height: 157rpx;
+  padding: 10rpx;
+  /* margin: 0 10rpx 20rpx 0; */
+  box-sizing: border-box;
+}
+
+.replayImg image {
+  border-radius: 30rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.uploadIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  background: #f2f2f2;
+  width: 155rpx;
+  height: 147rpx;
+  box-sizing: border-box;
+  color: #D3D3D3
+}
+
+.uploadReplayImg {
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+  background-color: #fff;
+}
+
+.btnSave {
+  margin: 0 auto;
+  width: 90%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #1adca9;
+  border-radius: 100rpx;
+}
+
+.popup_box {
+  background: white;
+  width: 100%;
+  height: 600rpx;
+}
+
+.popup_header {
+  padding: 24rpx 50rpx 0 50rpx;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+
+.popup_header .clear {
+  color: #1B1200;
+}
+
+.popup_header .done {
+  color: #1ADCA9;
+}
+
+.popup_type_title {
+  display: flex;
+  margin-top: 26rpx;
+  padding: 22rpx 150rpx 22rpx 150rpx;
+  justify-content: space-between;
+  border-top: solid 1px #F1F1F1;
+  border-bottom: solid 1px #F1F1F1;
+  color: #A8A8A8;
+  font-size: 32rpx;
+}
+
+.active {
+  color: #000000;
+  font-weight: 700;
+}
+
+.popup_type_pick {
+  display: flex;
+  justify-content: space-between;
+}
+
+.closeImageIcon {
+  position: absolute;
+  right: 5rpx;
+  top: 5rpx;
+  font-size: 32rpx;
+  color: red;
+}
+.picVideoList{
+  margin-top: 28rpx;
+  padding:32rpx 48rpx 32rpx 48rpx;
+  background: #fff;
+  box-shadow: 0px 12rpx 16rpx 0px rgba(121,121,121,0.2);
+  overflow: hidden;
+  border-radius: 20rpx;
+}
+.picItem{
+  width: 185rpx;
+  height: 185rpx;
+  float: left;
+  margin-right: 8rpx;
+  margin-bottom: 8rpx;
+  position: relative;
+  border-radius: 20rpx;
+}
+.playBtn{
+  width: 102rpx !important;
+  height: 102rpx !important;
+  display: block !important;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  margin-top:-51rpx;
+  margin-left:-51rpx;
+}
+.delPic{
+  display: block;
+  position: absolute;
+  top:0rpx;
+  right:0rpx;
+  width: 34rpx !important;
+  height: 34rpx !important;
+}
+.LoadBox{
+  width: 100%;
+  height: 100%;
+  border-radius: 4rpx;
+  background: rgba(0,0,0,0.6);
+  position: absolute;
+  top:0rpx;
+  left:0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.LoadBox text{
+  font-size:20rpx;
+  color: #f6ae23; 
+}
+.loading{
+  width:80%;
+  height: 8rpx;
+  background:#c7c7cb;
+  border-radius:4rpx;
+  overflow: hidden;
+}
+.loadingColor{
+  width: 100%;
+  height: 100%;
+  border-radius: 3rpx;
+  background: #f6ae23;
+}
+.picItem image{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 4rpx;
+}
+.picItem:nth-child(3n){
+  margin-right: 0rpx;
+}

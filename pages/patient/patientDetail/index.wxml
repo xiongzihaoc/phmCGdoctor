@@ -1,0 +1,160 @@
+<view class="box">
+	<!-- 个人信息 -->
+	<view class="userInfo">
+		<view class="userInfoLeft">
+			<!-- 患者头像 -->
+			<view class="patientImage">
+				<image src="{{userInfo.portrait}}" class="patientImg"></image>
+			</view>
+			<view style="margin-left:30rpx;height:120rpx">
+				<text class="patientName">{{userInfo.name}}</text>
+				<text class="patientName_ques" style="margin-top:20rpx">联系号码: {{userInfo.phone}}</text>
+			</view>
+		</view>
+		<view class="userInfoRight">
+			<text class="userInfoBtn" bindtap="jumpDetail">查看</text>
+		</view>
+	</view>
+	<!-- 每日反馈 -->
+	<!-- 排出 -->
+	<view class="problemRecord">
+		<view class="title disFlex">
+			<text class="fontWeight quesRecord">每日反馈</text>
+		</view>
+		<view class="content">
+			<text class="dayBtn lookPos" bindtap="ejectment">查看</text>
+			<view class="content_box">
+				<view>
+					<text class="fontSize">排出容量：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.output}}L</text>
+				</view>
+				<view class="marginLeft">
+					<text class="fontSize">导管下行：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.ductHight}}cm</text>
+				</view>
+			</view>
+		</view>
+		<!-- 腹痛 -->
+		<view class="content" style="margin:20rpx 0 ">
+			<text class="dayBtn lookPos" bindtap="stomachache">查看</text>
+			<view class="content_box">
+				<view>
+					<text class="fontSize">腹痛：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.ftState}}</text>
+				</view>
+				<view class="marginLeft">
+					<text class="fontSize">腹胀：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.fzState}}</text>
+				</view>
+			</view>
+		</view>
+		<!-- 饮食 -->
+		<view class="content">
+			<text class="dayBtn lookPos" bindtap="foodDetail">查看</text>
+			<view class="content_box">
+				<view>
+					<text class="fontSize">饮食状况：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.foodState}}</text>
+				</view>
+				<view class="marginLeft">
+					<text class="fontSize">食物类型：</text>
+					<text class="fontWeight" style="font-size:28rpx">{{DayfeedbackInfo.foodType}}</text>
+				</view>
+			</view>
+
+		</view>
+	</view>
+	<!-- 异常报告 -->
+	<view class="problemRecord">
+		<view class="title disFlex">
+			<text class="fontWeight quesRecord">异常报告</text>
+			<view class="history disFlex" bindtap="jumpHistory">
+				<text class="fontWeight">历史</text>
+				<image src="../../../images/Rjt.png" class="jtImg"></image>
+			</view>
+		</view>
+		<view class="content">
+			<!-- 症状 -->
+			<view class="commonStyle" style="margin:10rpx 0">
+				<text>症状：</text>
+				<text class="fontWeight">{{Matter.symptom}}</text>
+			</view>
+			<!-- 描述 -->
+			<view class="commonStyle" style="margin-bottom:10rpx">
+				<text>描述：</text>
+				<text class="fontWeight">{{Matter.describe}}</text>
+			</view>
+			<!-- 描述 -->
+			<view class="commonStyle">
+				<text>记录时间：</text>
+				<text class="fontWeight">{{Matter.createTime}}</text>
+			</view>
+			<!-- 问题图片 -->
+			<view class="questionImg">
+				<block wx:if="{{Matter.appendix.length>0}}" wx:for="{{Matter.appendix}}" wx:key="item">
+					<image bindtap="preViewImage" data-url="{{item.photoUrl}}" src="{{item.photoUrl}}"></image>
+				</block>
+			</view>
+		</view>
+	</view>
+
+	<!-- 随访问卷 -->
+	<view class="questionnaire  commonStyle">
+		<view class="questionImg">
+			<text class="fontWeight quesRecord">随访问卷</text>
+			<view class="history fontWeight disFlex" bindtap="setWenjuan">
+				<text class="fontWeight">设置</text>
+				<image class="jtImg" src="../../../images/Rjt.png"></image>
+			</view>
+		</view>
+		<!-- 未完成问卷 已完成问卷 -->
+		<view class="userInfo">
+			<view class="userInfoLeft">
+				<view class="patientImage">
+					<image src="/images/finish.png" class="patientImg"></image>
+				</view>
+				<view style="margin-left:30rpx;">
+					<view class="isFinish">
+						<text>未完成问卷：</text>
+						<text class="fontWeight">{{isFinsh.unfinish}}</text>
+					</view>
+					<view class="isFinish">
+						<text>已完成问卷：</text>
+						<text class="fontWeight">{{isFinsh.finish}}</text>
+					</view>
+				</view>
+			</view>
+			<view class="userInfoRight">
+				<text class="userInfoBtn" bindtap="jumpFollowMore">查看</text>
+			</view>
+		</view>
+		<view>
+		</view>
+	</view>
+	<!-- 报告单 -->
+	<view class="questionnaire  commonStyle">
+		<view class="questionImg">
+			<text class="fontWeight quesRecord">报告单</text>
+			<view class="history fontWeight disFlex" bindtap="bingtapMore">
+				<text class="fontWeight">更多</text>
+				<image class="jtImg" src="../../../images/Rjt.png"></image>
+			</view>
+		</view>
+		<view class="report">
+			<view>
+				<text>添加时间：</text>
+				<text class="fontWeight">2020-10-01</text>
+			</view>
+			<!-- 报告单图片 -->
+			<view class="questionImg">
+				<block wx:if="{{reportList.medicalReports.length>0}}" wx:for="{{reportList.medicalReports}}" wx:key="item">
+					<image bindtap="preViewImage" data-url="{{item.reportUrl}}" src="{{item.reportUrl}}"></image>
+				</block>
+			</view>
+		</view>
+		<view>
+		</view>
+	</view>
+	<view class="sendMessage" style="margin-top: 20rpx;margin-bottom: 20rpx" bindtap="sendMessage">发信息</view>
+	<view class="removeBinding" bindtap="removeBinding">解除绑定</view>
+</view>

@@ -1,0 +1,63 @@
+<view class="warning_box">
+  <text>请完善患者手术信息</text>
+</view>
+<view class="box">
+  <view class="fontWeight instrCondition">
+    <text>维护信息</text>
+  </view>
+  <view class="infoListBox">
+    <block wx:if="{{userType == 0}}">
+      <block wx:if="{{isBindingDoctor == 0}}">
+        <view class="infoList">
+          <text class="fontWeight">管理医生</text>
+          <picker bindchange="bindDoctor" value="{{doctorName}}" range="{{DoctortList}}" range-key="doctorName">
+            <view class="user_info_sex fontColor">{{doctorName}}</view>
+          </picker>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="infoList">
+          <text class="fontWeight">管理医生</text>
+            <view class="user_info_sex fontColor">{{doctorName}}</view>
+        </view>
+      </block>
+    </block>
+    <view class="infoList">
+      <text class="fontWeight">患者手术日期</text>
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+        <view class="user_info_sex fontColor">
+          {{date}}
+        </view>
+      </picker>
+    </view>
+    <view class="infoList">
+      <text class="fontWeight">选择手术方式</text>
+      <picker bindchange="bindMethodChange" value="{{dictLabel}}" range="{{MethodList}}" range-key="dictLabel">
+        <view class="user_info_sex fontColor">{{dictLabel}}</view>
+      </picker>
+    </view>
+    <view class="infoList">
+      <text class="fontWeight">选择使用器械品牌</text>
+      <picker bindchange="bindManufacturerChange" value="{{ManufacturerName}}" range="{{ManufacturerList}}"
+        range-key="name">
+        <view class="user_info_sex fontColor">{{ManufacturerName}}</view>
+      </picker>
+    </view>
+    <view class="infoList">
+      <text class="fontWeight">选择使用器械类型</text>
+      <picker bindchange="bindInstrumentChange" disabled="{{instrDisabled}}" value="{{InstrumentName}}"
+        range="{{InstrumentList}}" range-key="name">
+        <view bindtap="bindInstrument" class="user_info_sex fontColor">{{InstrumentName}}</view>
+      </picker>
+    </view>
+  </view>
+  <!-- 器械使用情况 -->
+  <view class="fontWeight instrCondition">
+    <text>器械使用情况：</text>
+  </view>
+  <view>
+    <textarea value="{{instrCondition}}" placeholder="请输入您对器械使用情况的意见或建议" bindinput="bindCondition"
+      placeholder-style="font-size:28rpx;" />
+    </view>
+  <view class="btnSave" bindtap="btnSave">保存</view>
+</view>

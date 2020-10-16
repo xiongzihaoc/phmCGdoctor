@@ -1,0 +1,105 @@
+@import '../index.wxss';
+
+.weui-search-bar {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.weui-search-bar__form {
+  border-radius: 40rpx !important;
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 40rpx;
+  top: 5rpx;
+}
+
+.weui-search-bar__input {
+  padding-left: 40rpx;
+}
+
+.weui-search-bar__form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+  flex: auto;
+  border-radius: 5px;
+  padding: 14rpx 0;
+  background: #F5F5F5;
+  border: 1px solid #E6E6EA;
+}
+
+.weui-search-bar__box {
+  position: relative;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.weui-search-bar__input {
+  height: 56rpx;
+  line-height: 56rpx;
+}
+
+.closeIcon {
+  position: absolute;
+  right: 30rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a8a8a8;
+  z-index: 999;
+}
+
+.popup_box {
+  background: white;
+  width: 100%;
+  height: 600rpx;
+}
+
+.popup_header {
+  padding: 24rpx 50rpx 0 50rpx;
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+
+.popup_header .clear {
+  color: #1B1200;
+}
+
+.popup_header .done {
+  color: #1ADCA9;
+}
+
+.popup_type_title {
+  display: flex;
+  margin-top: 26rpx;
+  padding: 22rpx 150rpx 22rpx 150rpx;
+  justify-content: space-between;
+  border-top: solid 1px #F1F1F1;
+  border-bottom: solid 1px #F1F1F1;
+  color: #A8A8A8;
+  font-size: 32rpx;
+}
+
+.active {
+  color: #000000;
+  font-weight: 700;
+}
+
+.popup_type_pick {
+  display: flex;
+  justify-content: space-between;
+}
+
+.maintainRecord {
+  padding-left: 10rpx;
+  margin: 30rpx 0;
+}

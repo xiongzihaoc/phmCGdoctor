@@ -1,0 +1,16 @@
+<view id='background'>
+  <view id='topLine'></view>
+   <view id='InputPhone'> 
+      <input  value='{{phone}}' bindinput='bindPhoneInput' type='number' class='searchInput' placeholder='请输入手机号' maxlength='11'/>
+        <view id='line'></view>
+        <view id='varifcationbox'>
+        <input  value='{{code}}' bindinput='bindCodeInput' type='number' class='varificationInput' placeholder='请输入验证码' maxlength='6'/> 
+        <view class='varificationButton' bindtap='getVarification'>{{timeText}}</view>
+        </view>
+   </view>
+   <text class='promptText'>绑定手机号同步所在医院信息</text>
+   <view>
+    <text class='commitButton'  bindtap='bindUser' >绑定</text>
+   </view>
+   
+</view>

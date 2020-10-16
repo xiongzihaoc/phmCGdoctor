@@ -1,0 +1,177 @@
+<view>
+	<view wx:if="{{!isLogin}}" class="noBingDoctorbox" bindtap="login">
+		<text style="display:block;">还未登录,请点击登录</text>
+	</view>
+	<view wx:else style="padding:30rpx;box-sizing: border-box;">
+		<view class="weui-search-bar">
+			<view class="weui-search-bar__form">
+				<!-- 搜索框 -->
+				<view class="weui-search-bar__box searchInput">
+					<icon class="weui-icon-search_in-box" type="search" size="24"></icon>
+					<input bindinput="bindinputSearch" value="{{name}}" type="text" class="weui-search-bar__input"
+						placeholder="请输入患者名称" />
+				</view>
+			</view>
+		</view>
+		<!-- 患者列表 -->
+		<!-- 为空 -->
+		<view wx:if="{{patientList.length <= 0}}">
+			<block wx:if="{{accountType == 0}}">
+				<view class="title disFlex">
+					<text class="fontWeight quesRecord">患者列表</text>
+					<view class="history disFlex" bindtap="screen">
+						<text class="fontWeight">筛选</text>
+						<image src="../../images/Rjt.png" class="jtImg"></image>
+					</view>
+				</view>
+			</block>
+			<view class="kong">
+				<text class="iconfont iconkong"></text>
+				<view style="color:#a8a8a8;margin-top:10rpx;">暂无患者</view>
+			</view>
+		</view>
+
+		<!-- 不为空 -->
+		<view wx:else>
+			<block wx:if="{{accountType == 0}}">
+				<view class="title disFlex">
+					<text class="fontWeight quesRecord">患者列表</text>
+					<view class="history disFlex" bindtap="screen">
+						<text class="fontWeight">筛选</text>
+						<image src="../../images/Rjt.png" class="jtImg"></image>
+					</view>
+				</view>
+			</block>
+			<block wx:for="{{patientList}}" wx:key="id">
+				<view class="patientBlock" data-patientmessage="{{item}}" bindtap="patientListTap" style="margin-bottom:20rpx;">
+					<!-- 患者头像 -->
+					<view class="patientImage">
+						<image src="{{item.portrait}}" class="patientImg"></image>
+					</view>
+					<!-- 患者姓名 -->
+					<view style="padding: 4rpx 0 0 30rpx;box-sizing: border-box;">
+						<view class="patientName"> {{item.name}}</view>
+						<view style="display:flex;align-items:baseline;">
+							<view class="setSave">
+								<text class="patientName_ques">随访设置：</text>
+								<image wx:if="{{item.isMatter == 0}}" class="closeImg" src="../../images/close.png"></image>
+								<image wx:else class="closeImg" src="../../images/right.png"></image>
+							</view>
+							<view class="setSave">
+								<block wx:if="{{item.isBindingDoctor == 1}}">
+									<view>
+										<text class="patientName_ques" style="margin-left:20rpx;">管理医生：</text>
+										<text class="patientName_ques">{{item.doctorName}}</text>
+									</view>
+								</block>
+								<block wx:else>
+									<view>
+										<text class="patientName_ques"
+											style="margin-left:20rpx;color:red;width:170rpx;verflow: hidden;text-overflow:ellipsis;white-space: nowrap;">未绑定管理医生</text>
+									</view>
+								</block>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+		</view>
+		<loadmore show="{{loadmoreShow}}" type="{{loadmoreType}}" loading-text="加载中,请稍后..." end-text="我是有底线的"
+			line="{{true}}"></loadmore>
+	</view>
+	<!-- 上拉菜单 -->
+	<l-popup show="{{screenShow}}">
+		<view class="screen_box">
+			<scroll-view scroll-y="true" scroll-top="{{y}}" scroll-with-animation="{{true}}" style="height:100%">
+				<!-- 回复状态 -->
+				<view class="recoilState_box">
+					<view class="recoilState">
+						<text style="border-bottom:6rpx solid #1ADCA9">绑定状态</text>
+					</view>
+					<view class="recoilState_">
+						<block wx:if="{{replyAllNum == 1}}">
+							<text class="recoilState_choose" bindtap="chooseReplyAll" style="margin-right:20rpx;">全部</text>
+						</block>
+						<block wx:else>
+							<text class="recoilState_con" bindtap="chooseReplyAll" style="margin-right:20rpx;">全部</text>
+						</block>
+						<block wx:if="{{replyAllNum != 1}}">
+							<block wx:for="{{replayList}}" wx:key="id">
+								<block wx:if="{{item.state == replyNum}}">
+									<text class="recoilState_choose " style="display:inline-block;margin:0 20rpx 0 0;"
+										bindtap="replayState" data-state="{{item.state}}">{{item.name}}</text>
+								</block>
+								<block wx:else>
+									<text class="recoilState_con" style="display:inline-block;margin:0 20rpx 0 0;" bindtap="replayState"
+										data-state="{{item.state}}">{{item.name}}</text>
+								</block>
+							</block>
+						</block>
+						<block wx:else>
+							<block wx:for="{{replayList}}" wx:key="id">
+								<block wx:if="{{item.state == replyNum}}">
+									<text class="recoilState_choose " style="display:inline-block;margin:0 20rpx 0 0;"
+										bindtap="replayState" data-state="{{item.state}}">{{item.name}}</text>
+								</block>
+								<block wx:elif="{{replyAllNum == 1}}">
+									<text class="hos_style  recoilState_con"
+										style="display:inline-block;margin:0 20rpx 0 0;">{{item.name}}</text>
+								</block>
+								<block wx:else>
+									<text class="recoilState_con" style="display:inline-block;margin:0 20rpx 0 0;" bindtap="replayState"
+										data-state="{{item.state}}">{{item.name}}</text>
+								</block>
+							</block>
+						</block>
+					</view>
+				</view>
+				<!-- 科室医生 -->
+				<view class="recoilState_box">
+					<view class="recoilState">
+						<text style="border-bottom:6rpx solid #1ADCA9">科室医生</text>
+					</view>
+					<view class="recoilState_">
+						<block wx:if="{{doctorAllNum == 1}}">
+							<text class="recoilState_choose" bindtap="chooseDoctorAll" style="margin-right:20rpx;">全部</text>
+						</block>
+						<block wx:else>
+							<text class="recoilState_con" bindtap="chooseDoctorAll" style="margin-right:20rpx;">全部</text>
+						</block>
+
+						<block wx:if="{{doctorAllNum != 1}}">
+							<block wx:for="{{doctorList}}" wx:key="doctorUuid">
+								<block wx:if="{{item.doctorUuid == doctorNum}}">
+									<text class="recoilState_choose " style="display:inline-block;margin:0 20rpx 0 0;"
+										bindtap="doctorState" data-state="{{item.doctorUuid}}">{{item.doctorName}}</text>
+								</block>
+								<block wx:else>
+									<text class="recoilState_con" style="display:inline-block;margin:0 20rpx 0 0;" bindtap="doctorState"
+										data-state="{{item.doctorUuid}}">{{item.doctorName}}</text>
+								</block>
+							</block>
+						</block>
+						<block wx:else>
+							<block wx:for="{{doctorList}}" wx:key="doctorUuid">
+								<block wx:if="{{item.doctorUuid == doctorNum}}">
+									<text class="recoilState_choose " style="display:inline-block;margin:0 20rpx 0 0;"
+										bindtap="doctorState" data-state="{{item.doctorUuid}}">{{item.doctorName}}</text>
+								</block>
+								<block wx:elif="{{doctorAllNum == 1}}">
+									<text class="hos_style  recoilState_con"
+										style="display:inline-block;margin:0 20rpx 0 0;">{{item.doctorName}}</text>
+								</block>
+								<block wx:else>
+									<text class="recoilState_con" style="display:inline-block;margin:0 20rpx 0 0;" bindtap="doctorState"
+										data-state="{{item.doctorUuid}}">{{item.doctorName}}</text>
+								</block>
+							</block>
+						</block>
+					</view>
+				</view>
+				<!-- 确认筛选按钮 -->
+				<view class="btnScreen" bindtap="btnScreen">确认筛选</view>
+			</scroll-view>
+		</view>
+
+	</l-popup>
+</view>

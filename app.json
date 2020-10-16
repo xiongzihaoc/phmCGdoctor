@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/patient/index",
+    "pages/Authorization/index",
+    "pages/patient/patientDetail/index",
+    "pages/patient/isMessage/isMessage",
+    "pages/patient/patientDetail/stomachache/stomachache",
+    "pages/patient/patientDetail/dietetic/dietetic",
+    "pages/patient/patientDetail/userInfoDetail/index",
+    "pages/patient/patientDetail/history/index",
+    "pages/patient/patientDetail/set/index",
+    "pages/patient/patientDetail/more/more",
+    "pages/patient/patientDetail/maintenance/maintenance",
+    "pages/patient/patientDetail/followMore/followMore",
+    "pages/patient/patientDetail/followMore/detail/detail",
+    "pages/mine/index",
+    "pages/mine/userInfo/userInfo",
+    "pages/mine/feedbackPro/feedbackPro",
+    "pages/mine/feedbackHis/feedbackHis",
+    "pages/mine/feedbackHis/checkDetail/checkDetail",
+    "pages/message/index",
+    "pages/message/chat/chat",
+    "pages/logs/logs",
+    "pages/bindNum/bindNum"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "医生端",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#1ADCA9",
+    "list": [{
+        "pagePath": "pages/patient/index",
+        "text": "患者",
+        "iconPath": "./images/paitent.png",
+        "selectedIconPath": "./images/paitent_is.png"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "text": "消息",
+        "iconPath": "./images/message.png",
+        "selectedIconPath": "./images/message_is.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "./images/mine.png",
+        "selectedIconPath": "./images/mine_is.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-input": "/miniprogram_npm/lin-ui/input/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

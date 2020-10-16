@@ -1,0 +1,52 @@
+<view class="box">
+	<view class="time">
+		<view>
+			<text class="iconfont iconriqixuanze" style="margin-right:10rpx;"></text>
+			<text>推送时间</text>
+		</view>
+		<picker mode="date" value="{{date}}" start="1970-09-01" end="2100-09-01" bindchange="bindDateChange">
+			<view class="picker" style="color:#A8A8A8;font-szie:30rpx;font-weight:400">
+				{{date}}
+			</view>
+		</picker>
+	</view>
+	<view class="questionImg">
+		<view>
+			<text class="quesRecord">选择问卷</text>
+		</view>
+		<view class="weui-search-bar">
+			<view class="weui-search-bar__form">
+				<!-- 搜索框 -->
+				<view class="weui-search-bar__box searchInput">
+					<icon class="weui-icon-search_in-box" type="search" size="24"></icon>
+					<input bindinput="bindinputSearch" type="text" class="weui-search-bar__input" placeholder="请输入问卷名称" />
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 问卷列表 -->
+	<view class="wenjuan_box">
+		<checkbox-group bindchange="checkboxChange">
+			<block wx:for="{{wenjuanList}}" wx:key="id">
+				<view class="wenjuanList" bindtap="addwenjuan">
+					<text>{{item.name}}</text>
+					<!-- <text class="iconfont iconplus"></text> -->
+					<view class="weui-cell__hd">
+						<checkbox value="{{item.uuid}}"></checkbox>
+					</view>
+				</view>
+			</block>
+		</checkbox-group>
+	</view>
+	<!-- 保存 -->
+	<block wx:if="{{editId == 1}}">
+		<view class="btnSave" bindtap="editBtnSave">
+			保存
+		</view>
+	</block>
+	<block wx:else>
+		<view class="btnSave" bindtap="btnSave">
+			保存
+		</view>
+	</block>
+</view>

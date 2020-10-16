@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../../../ec-canvas/ec-canvas",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "loadmore":"/miniprogram_npm/lin-ui/loadmore/index"
+  },
+  "navigationBarTitleText": "历史数据"
+}

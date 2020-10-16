@@ -1,0 +1,46 @@
+<view class="box">
+  <view class="questionnaire  commonStyle">
+    <view class="questionImg">
+      <text class="fontWeight quesRecord maintainRecord">反馈内容</text>
+    </view>
+    <!-- 反馈内容 -->
+    <view class="report" style="margin-bottom:20rpx">
+      <!-- 文字 -->
+      <view class="fontWeight">
+        <text>{{FeedbackObj.content}}</text>
+      </view>
+      <!-- 图片 -->
+      <view class="questionImg">
+        <block wx:for="{{FeedbackObj.feedbackPhotos}}" wx:key="item">
+          <image bindtap="preViewImage" data-url="{{item.photoUrl}}" src="{{item.photoUrl}}"></image>
+        </block>
+      </view>
+    </view>
+    <view>
+    </view>
+    <view class="questionImg">
+      <text class="fontWeight quesRecord maintainRecord">回复详情</text>
+    </view>
+    <!-- 回复详情 -->
+    <view class="report" style="margin-bottom:20rpx">
+      <!-- 文字 -->
+      <view class="fontWeight">
+        <block wx:if="{{FeedbackObj.replyContent == null}}">
+          <text>无</text>
+        </block>
+        <block wx:else>
+          <text>{{FeedbackObj.replyContent}}</text>
+        </block>
+
+      </view>
+      <!-- 图片 -->
+      <view class="questionImg" wx:if="{{FeedbackObj.replyPhotos.length > 0}}">
+        <block wx:for="{{FeedbackObj.replyPhotos}}" wx:key="item">
+          <image bindtap="preViewImage" data-url="{{item.photoUrl}}" src="{{item.photoUrl}}"></image>
+        </block>
+      </view>
+    </view>
+    <view>
+    </view>
+  </view>
+</view>

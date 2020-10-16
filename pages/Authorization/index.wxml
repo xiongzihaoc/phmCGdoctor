@@ -1,0 +1,6 @@
+<view class="box">
+	<button open-type='getUserInfo' class='regbutton' bindgetuserinfo='bindgetuserinfo'>
+		<image src='/images/icon_wechat.png' class='butImage'></image>
+		<text  class='butText'>微信授权快速登录</text>
+	</button>
+</view>

@@ -1,0 +1,28 @@
+<view style="padding:30rpx;box-sizing: border-box;">
+	<!-- 循环维护详情列表 -->
+	<view class="questionnaire  commonStyle">
+		<view class="questionImg">
+			<text class="fontWeight quesRecord maintainRecord">报告单</text>
+		</view>
+		<!-- 循环卡片 -->
+		<block wx:for="{{reportList}}" wx:key="item">
+			<view class="content">
+				<view>
+					<text>添加时间：</text>
+					<text class="fontWeight">{{item.dateStr}}</text>
+				</view>
+				<!-- 报告单图片 -->
+				<view class="questionImg">
+					<block wx:if="{{item.medicalReports.length > 0}}" wx:for="{{item.medicalReports}}" wx:for-item="subItem" wx:key="item">
+						<image bindtap="preViewImage" data-url="{{subItem.reportUrl}}"  src="{{subItem.reportUrl}}"></image>
+					</block>
+				</view>
+			</view>
+		</block>
+
+		<view>
+		</view>
+	</view>
+
+
+</view>

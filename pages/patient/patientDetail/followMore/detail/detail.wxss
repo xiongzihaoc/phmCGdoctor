@@ -1,0 +1,14 @@
+@import '../followMore.wxss';
+
+.detail_time {
+  margin: 10rpx 0 0 20rpx;
+}
+.detail_title {
+  margin-left: 20rpx;
+}
+.detail-ques {
+  white-space: nowrap;
+}
+.detail-content {
+  margin-left: 0;
+}

@@ -1,0 +1,18 @@
+<view class="box">
+	<view class="infoList">
+		<text class="fontWeight">姓名</text>
+		<text class="user_info_name fontColor">{{name}}</text>
+	</view>
+	<view class="infoList">
+		<text class="fontWeight">性别</text>
+		<text class="user_info_name fontColor">{{gender}}</text>
+	</view>
+	<view class="infoList">
+		<text class="fontWeight">联系电话</text>
+		<text class="user_info_name fontColor">{{phone}}</text>
+	</view>
+	<view class="infoList">
+		<text class="fontWeight">医院科室</text>
+		<text class="user_info_name fontColor">{{hospitalName}}</text>
+	</view>
+</view>

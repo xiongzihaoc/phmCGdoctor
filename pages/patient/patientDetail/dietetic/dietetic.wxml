@@ -1,0 +1,74 @@
+<view style="padding:30rpx;box-sizing: border-box;">
+  <!-- 起始时间 结束时间 -->
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <!-- 清除图标 -->
+      <text wx:if="{{closeIconShow}}" bindtap="closeIcon" class="iconfont iconclose closeIcon"></text>
+      <!-- 搜索框 -->
+      <view class="weui-search-bar__box searchInput" bindtap="selectTimer">
+        <icon class="weui-icon-search_in-box" type="search" size="24"></icon>
+        <input value="{{chooseTime}}" type="text" disabled="{{true}}" class="weui-search-bar__input" placeholder="按时间搜索"
+          readonly="readonly" style="color:#a8a8a8;" />
+      </view>
+    </view>
+  </view>
+  <!-- 循环维护详情列表 -->
+  <view class="questionnaire  commonStyle">
+    <view class="questionImg">
+      <text class="fontWeight quesRecord maintainRecord">饮食反馈</text>
+    </view>
+    <!-- 循环卡片 -->
+    <block wx:for="{{historyQues}}" wx:key="id">
+      <view class="content feedbackRecord_card" style="margin:0 0 20rpx 0">
+        <view>
+          <text class="keyStyle">时间：</text>
+          <text class="valStyle">{{item.createTime}}</text>
+        </view>
+        <view>
+          <text class="keyStyle">饮食情况：</text>
+          <text class="valStyle">{{item.foodState}}</text>
+        </view>
+        <view>
+          <text class="keyStyle">食物类型：</text>
+          <text class="valStyle">{{item.foodType}}</text>
+        </view>
+        <view>
+          <text class="keyStyle">补充：</text>
+          <text class="valStyle">{{item.foodRemark}}</text>
+        </view>
+      </view>
+    </block>
+    <view>
+    </view>
+  </view>
+  <!-- <loadmore show="{{loadmoreShow}}" type="{{loadmoreType}}" loading-text="加载中,请稍后..." end-text="我是有底线的" line="{{true}}">
+  </loadmore> -->
+  <l-popup show="{{searchTimerPopupShow}}" content-align="bottom">
+    <view class="popup_box">
+      <view class="popup_header">
+        <text class="clear" bindtap="clear">取消</text>
+        <text class="done" bindtap="done">确定</text>
+      </view>
+      <view class="popup_type_title">
+        <text class="{{timeType==1?'active':''}}" bindtap="changeTimerType" data-type="1">{{startTime}}</text>
+        <text>——</text>
+        <text class="{{timeType==2?'active':''}}" bindtap="changeTimerType" data-type="2">{{endTime}}</text>
+      </view>
+      <view class="popup_type_pick">
+        <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 400rpx;" value="{{value}}"
+          bindchange="bindChange">
+          <picker-view-column>
+            <view wx:for="{{years}}" wx:key="years" style="line-height: 100rpx; text-align: center;">{{item}}年</view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{months}}" wx:key="months" style="line-height: 100rpx; text-align: center;">{{item}}月
+            </view>
+          </picker-view-column>
+          <picker-view-column>
+            <view wx:for="{{days}}" wx:key="days" style="line-height: 100rpx; text-align: center;">{{item}}日</view>
+          </picker-view-column>
+        </picker-view>
+      </view>
+    </view>
+  </l-popup>
+</view>

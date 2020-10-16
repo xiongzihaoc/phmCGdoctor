@@ -1,0 +1,93 @@
+page {
+  position: relative;
+}
+.box {
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.btnBox {
+  z-index: 999;
+  width: 70%;
+  position: fixed;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.add {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+  color: #FDBD2F;
+  box-sizing: border-box;
+  border-radius: 120rpx;
+  background-color: #fff;
+}
+
+.save {
+  margin-top: 30rpx;
+  background-color: #D3D3D3;
+  color: #fff;
+}
+
+.taocanList {
+  margin-bottom: 20rpx;
+}
+
+.tcao_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.edit {
+  font-size: 28rpx;
+}
+
+.tcao_content_box {
+  margin-top: 20rpx;
+  padding: 30rpx 30rpx 10rpx 30rpx;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+.bg {
+  background-color: #1ADCA9;
+}
+.tcao_content_title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #A8A8A8;
+}
+.tcao_content_main image {
+  width: 48rpx;
+  height: 48rpx;
+}
+.tcao_content_main {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+.wenjuanName {
+  margin-left: 20rpx;
+  font-weight: 700;
+  font-size-adjust: 30rpx;
+}
+.time {
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+  color: #A8A8A8;
+}

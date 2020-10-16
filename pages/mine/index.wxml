@@ -1,0 +1,61 @@
+<view class="box">
+	<!-- 头像名字 -->
+	<view class="myMessage">
+		<view class="userNameBox">
+			<view>
+				<image src="{{headerUrl==''?'/images/foot.jpg':headerUrl}}"></image>
+			</view>
+			<view style="margin-left:20rpx" wx:if="{{isLogin}}">
+				<text class="fontWeight" style="display:inline-block;margin-bottom:20rpx;font-size:36rpx;">{{userName}}</text>
+				<!-- <view>
+					<text class="fontWeight" style="font-size:24rpx">浙江</text>
+					<text class="fontWeight" style="font-size:24rpx;margin-left:10rpx">杭州</text>
+				</view> -->
+			</view>
+			<view style="margin-left:20rpx" wx:else bindtap="login">
+				<text class="fontWeight" style="display:inline-block;margin-bottom:20rpx;font-size:36rpx;">请登录</text>
+			</view>
+		</view>
+	</view>
+	<!-- 个人信息 -->
+	<view class="title" bindtap="bindJumpUserInfo">
+		<view class="userinfo">
+			<image src="/images/paitent.png"></image>
+			<text class="content">个人信息</text>
+		</view>
+		<image src="/images/Rjt_ccc.png"></image>
+	</view>
+	<!-- 二维码 -->
+	<view class="title" bindtap="viewErweima">
+		<view class="userinfo">
+			<image src="/images/erweima.png"></image>
+			<text class="content">二维码</text>
+		</view>
+		<view class="userinfo">
+			<text style="color:#1ADCA9;margin-right:5rpx;" class="fontWeight">查看</text>
+			<image src="/images/Rjt_ccc.png"></image>
+		</view>
+	</view>
+	<!-- 产品反馈 -->
+	<view class="title" bindtap="bindFeedbackOfProduct">
+		<view class="userinfo">
+			<image src="/images/consult_text_icon.png"></image>
+			<text class="content">产品反馈</text>
+		</view>
+		<image src="/images/Rjt_ccc.png"></image>
+	</view>
+	<!-- 反馈历史 -->
+	<view class="title" bindtap="bindFeedbackHistory">
+		<view class="userinfo">
+			<image src="/images/history_.png"></image>
+			<text class="content">反馈历史</text>
+		</view>
+		<image src="/images/Rjt_ccc.png"></image>
+	</view>
+</view>
+<van-dialog bind:close="closeViewErweima" showConfirmButton="{{false}}" use-slot show="{{qCodeShow}}" closeOnClickOverlay overlay>
+	<image src="{{qrcode}}" class="qrcode" bindlongtap="saveImg" data-url="{{qrcode}}"></image>
+	<view class="text">
+		扫一扫二维码图案，建立医患关系
+	</view>
+</van-dialog>

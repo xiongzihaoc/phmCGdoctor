@@ -1,0 +1,69 @@
+<view style="padding:30rpx;box-sizing: border-box;">
+  <!-- 导航栏 -->
+  <scroll-view scroll-x="true" scroll-left="{{x}}" scroll-with-animation="{{true}}">
+    <view class="nav_bar">
+      <block wx:for="{{navList}}" wx:key="id">
+        <block wx:if="{{item.id == navNum}}">
+          <text bindtap="bindNav" data-id="{{item.id}}" class="nav_main current">{{item.name}}</text>
+        </block>
+        <block wx:else>
+          <text bindtap="bindNav" data-id="{{item.id}}" class="nav_main">{{item.name}}</text>
+        </block>
+      </block>
+    </view>
+  </scroll-view>
+  <!-- 导航主体内容 -->
+  <!-- 排出 -->
+  <view style="position:relative;width:100%;height:600rpx;">
+    <view class="pic_box">
+      <ec-canvas force-use-old-canvas="true" id="mychart" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
+    </view>
+  </view>
+  <block wx:if="{{navNum == 1}}">
+    <!-- 图表 -->
+    <!-- 列表内容 -->
+    <view class="card_box">
+      <view class="card_box_title">
+        <text class="">日期</text>
+        <text class="">排出量</text>
+      </view>
+      <block wx:for="{{outputList}}" wx:key="id">
+        <view class="card_box_main">
+          <text>{{item.createTime}}</text>
+          <block wx:if="{{item.output != '' || item.output != null}}">
+            <text>{{item.output}}L</text>
+          </block>
+          <block wx:else>
+            <text>-</text>
+          </block>
+        </view>
+      </block>
+    </view>
+  </block>
+  <!-- 导管 -->
+  <block wx:elif="{{navNum == 2}}">
+    <!-- <view style="position:relative;width:100%;height:600rpx;">
+      <view class="pic_box">
+        <ec-canvas force-use-old-canvas="true" id="mychartxia" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
+      </view>
+    </view> -->
+    <!-- 列表内容 -->
+    <view class="card_box">
+      <view class="card_box_title">
+        <text class="">日期</text>
+        <text class="">长度</text>
+      </view>
+      <block wx:for="{{outputList}}" wx:key="id">
+        <view class="card_box_main">
+          <text>{{item.createTime}}</text>
+          <block wx:if="{{item.ductHight != '' || item.ductHight != null}}">
+            <text>{{item.ductHight}}cm</text>
+          </block>
+          <block wx:else>
+            <text>-</text>
+          </block>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

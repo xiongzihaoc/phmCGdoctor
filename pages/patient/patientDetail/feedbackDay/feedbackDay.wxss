@@ -1,0 +1,102 @@
+@import '../../../mine//feedbackHis/feedbackHis.wxss';
+
+.nav_bar {
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+}
+
+.nav_main {
+  padding: 30rpx 0 10rpx 0;
+  margin-right: 30rpx;
+  box-sizing: border-box;
+  color: #a8a8a8;
+  
+}
+
+.current {
+  color: #1ADCA9;
+  border-bottom: 2px solid #1ADCA9;
+}
+
+.feedbackRecord_card {
+  padding: 30rpx;
+  margin-top: 30rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.keyStyle {
+  font-size: 28rpx;
+  color: #a8a8a8;
+}
+
+.valStyle {
+  font-weight: 700;
+  color: #000;
+  font-size: 28rpx;
+}
+
+.feedbackRecord_card view {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.feedbackRecord_card view:last-child {
+  margin-bottom: 0;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.pic_box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.card_box {
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.card_box {
+  font-size: 28rpx;
+}
+
+.card_box_title,
+.card_box_main {
+  display: flex;
+  align-items: center;
+}
+
+.card_box_main text,
+.card_box_title text {
+  flex: 1;
+  text-align: center;
+}
+
+.card_box_title {
+  color: #a8a8a8;
+}
+
+.card_box_main {
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f2f2f2;
+}

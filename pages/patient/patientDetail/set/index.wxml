@@ -1,0 +1,39 @@
+<view class="box">
+	<!-- 从选择完问卷页面 back回来 渲染此盒子 -->
+	<block wx:for="{{packagesList}}" wx:key="id">
+		<view class="taocanList">
+			<view class="tcao_title">
+				<view>
+					<text>套餐{{index + 1}}</text>
+				</view>
+				<!-- style="visibility: hidden;" -->
+				<view  class="edit" data-info="{{index}}" bindtap="edit">
+					<text>修改问卷</text>
+					<text class="iconfont iconarrow"></text>
+				</view>
+			</view>
+			<view class="tcao_content_box">
+				<view class="time">
+					<text>推送时间：</text>
+					<text>{{item.time}}</text>
+				</view>
+				<block wx:for="{{item.sheetList}}" wx:key="id" wx:for-item="sheetItem">
+					<view class="tcao_content_main">
+						<image src="/images/finish_is.png"></image>
+						<text class="wenjuanName">{{sheetItem.name}}</text>
+					</view>
+				</block>
+			</view>
+		</view>
+	</block>
+	<!-- 保存按钮 -->
+	<view class="btnBox">
+		<view class="add" bindtap="addCombo">
+			<text class="iconfont iconplus"></text>
+			<text>新增套餐</text>
+		</view>
+		<view class="save add bg" bindtap="btnSaveCombo">
+			<text>保存</text>
+		</view>
+	</view>
+</view>

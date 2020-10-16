@@ -1,0 +1,82 @@
+.box {
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.messageList {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 20rpx 14rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 30rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+}
+
+.instr {
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.userName {
+  font-weight: 700;
+}
+
+.messageIns {
+  font-size: 28rpx;
+  color: #a8a8a8;
+  margin-top: 10rpx;
+}
+
+.messageIns text {
+  width: 100rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+}
+
+.orange {
+  display: flex;
+  position: absolute;
+  right: 40rpx;
+  bottom: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: red;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.orange text {
+  display: flex;
+  font-size: 25rpx;
+  color: #fff;
+}
+
+.date {
+  font-size: 28rpx;
+  color: #a8a8a8;
+  position: absolute;
+  right: 40rpx;
+  top: 30rpx;
+}
+
+.kong {
+  margin-top: 300rpx;
+  text-align: center;
+}
+
+.iconkong {
+  font-size: 64rpx;
+  color: #a8a8a8;
+}

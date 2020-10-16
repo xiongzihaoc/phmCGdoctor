@@ -1,0 +1,43 @@
+.box {
+  background-color: #fff;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.infoList {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.fontWeight {
+  font-weight: 700;
+}
+
+.fontColor {
+  color: #ccc;
+  text-align: right;
+}
+
+.user_info_sex {
+  width: 300rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  text-align: right;
+}
+
+.btnSave {
+  position: fixed;
+  left: 50%;
+  bottom: 100rpx;
+  transform: translate(-50%);
+  width: 90%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 30rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #1adca9;
+  border-radius: 100rpx;
+}
