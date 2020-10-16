@@ -115,8 +115,23 @@ Page({
   },
   // 跳转发送消息
   sendMessage: function () {
-    wx.navigateTo({
-      url: "/pages/message/chat/chat",
+    let that = this;
+    var userInfo = this.data.userInfo;
+    var tencentImUser = this.data.userInfo.tencentImUser;
+    console.log(tencentImUser);
+    var conversationID = '';
+    timUtils.getConversationList((data) => {
+      console.log(data);
+      if (data != null && data.length > 0) {
+        data.forEach(element => {
+          if (element.groupProfile != null && userInfo.tencentGroupMember == element.groupProfile.groupID) {
+            conversationID = element.conversationID;
+          }
+        });
+        wx.navigateTo({
+          url: '/pages/message/chat/chat?conversationID=' + conversationID + "&userId=" + userInfo.tencentGroupMember,
+        });
+      }
     })
   },
   // 跳转到问卷设置

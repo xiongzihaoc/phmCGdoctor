@@ -51,7 +51,7 @@ class TimUtils {
   createTxtMsg(userName, content, callBack) {
     let message = tim.createTextMessage({
       to: userName,
-      conversationType: TxTim.TYPES.CONV_C2C,
+      conversationType: TxTim.TYPES.CONV_GROUP,
       payload: {
         text: content
       }
@@ -68,7 +68,7 @@ class TimUtils {
         // 2. 创建消息实例，接口返回的实例可以上屏
         let message = tim.createImageMessage({
           to: userName,
-          conversationType: TxTim.TYPES.CONV_C2C,
+          conversationType: TxTim.TYPES.CONV_GROUP,
           payload: { file: res },
           onProgress: function (event) { console.log('file uploading:', event) }
         });
@@ -89,7 +89,7 @@ class TimUtils {
         // 2. 创建消息实例，接口返回的实例可以上屏
         let message = tim.createVideoMessage({
           to: userName,
-          conversationType: TxTim.TYPES.CONV_C2C,
+          conversationType: TxTim.TYPES.CONV_GROUP,
           payload: {
             file: res
           }
@@ -105,7 +105,7 @@ class TimUtils {
     })
     const message = tim.createAudioMessage({
       to: userName,
-      conversationType: TxTim.TYPES.CONV_C2C,
+      conversationType: TxTim.TYPES.CONV_GROUP,
       payload: {
         file: res
       },

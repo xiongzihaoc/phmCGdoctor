@@ -48,8 +48,16 @@ Page({
     let that = this;
     timUtils.getConversationList((data)=>{
       console.log(data);
+      var msgList=[];
+      if(data!= null && data.length>0){
+        data.forEach(element => {
+          if(element.type == 'GROUP'){
+            msgList.push(element);
+          }
+        });
+      }
       that.setData({
-        messageList:data
+        messageList:msgList
       });
     })
   },

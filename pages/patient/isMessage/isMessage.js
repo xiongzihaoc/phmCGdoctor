@@ -175,54 +175,58 @@ Page({
     // 患者id
     let patientUuid = wx.getStorageSync('patientUuid')
     let that = this
-    if (this.data.doctorValue == "") {
-      wx.showToast({
-        title: '请选择管理医生',
-        icon: "none",
-      })
-      return
-    } else if (this.data.ManufacturerValue == "") {
+    if(accountType == 0){
+      if (this.data.doctorValue == "") {
+        wx.showToast({
+          title: '请选择管理医生',
+          icon: "none",
+        })
+        return
+      } 
+    }
+    if (this.data.ManufacturerValue == "") {
       wx.showToast({
         title: '请选择器械品牌',
         icon: "none",
       })
       return
     }
-    else if (this.data.dictValue == "") {
+    
+    if (this.data.dictValue == "") {
       wx.showToast({
         title: '请选择手术方式',
         icon: "none",
       })
       return
-    } else if (this.data.InstrumentValue == "") {
+    } 
+    if (this.data.InstrumentValue == "") {
       wx.showToast({
         title: '请选择器械类型',
         icon: "none",
       })
       return
-    } else {
-      let messageObj = {
-        uuid: patientUuid,
-        doctoruuid: docUuid,
-        prepuceOperateTime: that.data.date,
-        prepuceOperateMethod: that.data.dictValue,
-        feedbackContent: that.data.instrCondition,
-        vendorId: that.data.ManufacturerValue,
-        goodsModelId: that.data.InstrumentValue,
-      }
-      if (accountType == 0) {
-        messageObj.doctoruuid = that.data.doctorValue
-      }
-      wx.showLoading({
-        title: '加载中...',
-      });
-      patientInfo.btnSave(messageObj, (res) => {
-        wx.redirectTo({
-          url: '/pages/patient/patientDetail/index?id=' + patientUuid,
-        })
-      });
-
     }
+    let messageObj = {
+      uuid: patientUuid,
+      doctoruuid: docUuid,
+      prepuceOperateTime: that.data.date,
+      prepuceOperateMethod: that.data.dictValue,
+      feedbackContent: that.data.instrCondition,
+      vendorId: that.data.ManufacturerValue,
+      goodsModelId: that.data.InstrumentValue,
+    }
+    if (accountType == 0) {
+      messageObj.doctoruuid = that.data.doctorValue
+    }
+    wx.showLoading({
+      title: '加载中...',
+    });
+    patientInfo.btnSave(messageObj, (res) => {
+      wx.redirectTo({
+        url: '/pages/patient/patientDetail/index?id=' + patientUuid,
+      })
+    });
+
   },
   /**
    * 生命周期函数--监听页面加载

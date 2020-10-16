@@ -4,31 +4,31 @@
 	<!-- 列表 -->
 	<view wx:if="{{messageList.length > 0}}">
 		<block wx:for="{{messageList}}" wx:key="conversationID">
-			<view class="messageList" bindtap="goChat" data-id="{{item.conversationID}}"
-				data-userId="{{item.userProfile.userID}}">
-				<!-- 头像 -->
-				<view class="avatar">
-					<image src="{{item.userProfile.avatar==''? '/images/finish.png':item.userProfile.avatar}}"></image>
-				</view>
-				<!-- 姓名 消息记录 -->
-				<view class="instr">
-					<view class="userName">
-						<text>{{item.userProfile.nick}}</text>
+				<view class="messageList" bindtap="goChat" data-id="{{item.conversationID}}" data-userId="{{item.groupProfile.groupID}}">
+					<!-- 头像 -->
+					<view class="avatar">
+						<image src="{{item.groupProfile.avatar==''? '/images/finish.png':item.groupProfile.avatar}}"></image>
 					</view>
-					<view class="messageIns">
-						<text wx:if="{{item.lastMessage.type=='TIMTextElem'}}" style="display:inline-block;width:400rpx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap">{{item.lastMessage.payload.text}}</text>
-						<text wx:elif="{{item.lastMessage.type=='TIMImageElem'}}">[图片]</text>
-						<text wx:elif="{{item.lastMessage.type=='TIMSoundElem'}}">[语音]</text>
+					<!-- 姓名 消息记录 -->
+					<view class="instr">
+						<view class="userName">
+							<text>{{item.groupProfile.name}}</text>
+						</view>
+						<view class="messageIns">
+							<text wx:if="{{item.lastMessage.type=='TIMTextElem'}}" style="display:inline-block;width:400rpx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap">{{item.lastMessage.payload.text}}</text>
+							<text wx:elif="{{item.lastMessage.type=='TIMImageElem'}}">[图片]</text>
+							<text wx:elif="{{item.lastMessage.type=='TIMSoundElem'}}">[语音]</text>
+							<text wx:else>[系统消息]</text>
+						</view>
 					</view>
+					<!-- 未读黄点 -->
+					<view wx:if="{{item.unreadCount > 0}}" class="orange">
+						<text>{{item.unreadCount}}</text>
+					</view>
+					<!-- 今天显示时间 一周内显示周日期 超过一周显示 月份 -->
+					<view class="date">
+						{{date.getDateTime(item.lastMessage.lastTime)}}</view>
 				</view>
-				<!-- 未读黄点 -->
-				<view wx:if="{{item.unreadCount > 0}}" class="orange">
-					<text>{{item.unreadCount}}</text>
-				</view>
-				<!-- 今天显示时间 一周内显示周日期 超过一周显示 月份 -->
-				<view class="date">
-					{{date.getDateTime(item.lastMessage.lastTime)}}</view>
-			</view>
 		</block>
 	</view>
 	<view wx:else class="kong">
