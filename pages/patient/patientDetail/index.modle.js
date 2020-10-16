@@ -158,5 +158,28 @@ class Maint extends Comm {
     }
     this.request(props);
   }
+    // 解绑
+    removeBinding(patientUuid, doctorUuid, callback) {
+      let props = {
+        url: "/api/removeBind",
+        contentType: 'application/json',
+        data: {
+          "patientUuid": patientUuid,
+          "doctorUuid": doctorUuid
+        },
+        sCallBack: res => {
+          wx.hideLoading();
+          callback(res.data);
+        },
+        eCallBack: err => {
+          wx.hideLoading();
+          wx.showToast({
+            title: '请求出错,请稍后重试!!!',
+            icon: 'none'
+          })
+        }
+      }
+      this.request(props);
+    }
 }
 export { Matter, UserInfo, Maint, FollowMore };

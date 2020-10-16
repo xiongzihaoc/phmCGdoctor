@@ -156,5 +156,7 @@
 		</view>
 	</view>
 	<view class="sendMessage" style="margin-top: 20rpx;margin-bottom: 20rpx" bindtap="sendMessage">发信息</view>
-	<view class="removeBinding" bindtap="removeBinding">解除绑定</view>
+	<block wx:if="{{accountType != 0}}">
+		<view class="removeBinding" bindtap="removeBinding">解除绑定</view>
+	</block>
 </view>

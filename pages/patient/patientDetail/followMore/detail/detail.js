@@ -1,5 +1,5 @@
 // pages/patient/patientDetail/followMore/followMore.js
-import { FollowMore} from "./detail_model"
+import { FollowMore } from "./detail_model"
 let FollowMoreInfo = new FollowMore();
 Page({
 
@@ -8,9 +8,9 @@ Page({
    */
   data: {
     id: "",
-    name:"",
-    userInfoObj:{},
-    detailLsit:[],
+    name: "",
+    userInfoObj: {},
+    detailLsit: [],
   },
   // 获取数量
   getFollowInfoNum: function () {
@@ -19,10 +19,10 @@ Page({
     });
     FollowMoreInfo.getFollowInfoNum(this.data.id, (res) => {
       console.log(res);
-      
+
       this.setData({
-        userInfoObj:res.result,
-        detailLsit:res.anserInfo
+        userInfoObj: res.result,
+        detailLsit: res.anserInfo
       })
     });
   },
@@ -33,7 +33,7 @@ Page({
     console.log(options.name);
     this.setData({
       id: options.id,
-      name:options.name
+      name: options.name
     })
 
     this.getFollowInfoNum()

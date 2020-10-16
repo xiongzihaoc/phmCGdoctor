@@ -21,6 +21,7 @@ Page({
     MaintList: {},
     isFinsh: {},
     reportList: {},
+    accountType: "",
     DayfeedbackInfo: {},
     patientUuid: "",
   },
@@ -184,20 +185,13 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    ReportInfo.removeBinding(this.data.patientId, docId, (res) => {
-      if (res.code != 200) {
-        wx.showToast({
-          title: '解绑失败，请稍后重试',
-        })
-        return
-      } else {
-        wx.showToast({
-          title: '解绑成功',
-        })
-        wx.navigateBack({
-          delta: 1,
-        })
-      }
+    MaintInfo.removeBinding(this.data.patientId, docId, (res) => {
+      wx.showToast({
+        title: '解绑成功',
+      })
+      wx.switchTab({
+        url: '/pages/patient/index',
+      })
     });
   },
   // 预览图片
@@ -215,7 +209,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let type = wx.getStorageSync('accountType')
     this.setData({
+      accountType: type,
       patientId: options.id,
       id: options.id,
       reportId: options.id,

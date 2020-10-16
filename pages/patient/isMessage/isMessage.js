@@ -175,14 +175,14 @@ Page({
     // 患者id
     let patientUuid = wx.getStorageSync('patientUuid')
     let that = this
-    if(accountType == 0){
-      if (this.data.doctorValue == "") {
+    if (accountType == 0) {
+      if (this.data.doctorName == "" || this.data.doctorName == "请选择") {
         wx.showToast({
           title: '请选择管理医生',
           icon: "none",
         })
         return
-      } 
+      }
     }
     if (this.data.ManufacturerValue == "") {
       wx.showToast({
@@ -191,14 +191,13 @@ Page({
       })
       return
     }
-    
     if (this.data.dictValue == "") {
       wx.showToast({
         title: '请选择手术方式',
         icon: "none",
       })
       return
-    } 
+    }
     if (this.data.InstrumentValue == "") {
       wx.showToast({
         title: '请选择器械类型',
