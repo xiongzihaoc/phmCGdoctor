@@ -17,7 +17,7 @@ Page({
       title: '加载中...',
     });
     patientInfo.getFeedbackList(that.data.id, (res) => {
-      console.log(res.data.feedbackPhotos);
+      console.log(res);
       that.setData({
         FeedbackObj: res.data
       })

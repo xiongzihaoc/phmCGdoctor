@@ -154,7 +154,6 @@ Page({
     let doctorAllNum = that.data.doctorAllNum
     let doctorNum = that.data.doctorNum
     console.log(doctorNum);
-
     // 绑定状态参数
     if (replyAllNum == null && replyNum == null) {
       wx.showToast({
@@ -238,10 +237,7 @@ Page({
       } else {
         // if (this.data.patientList.length == 0 || this.data.patientList == null) {}
         this.setData({
-          healthTotal: 1,
           healthPageNum: 1,
-          healthPageSize: 10,
-          name: "",
           patientList: [],
         })
         this.getUserInfo();

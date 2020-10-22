@@ -12,7 +12,7 @@
 
         <view wx:if="{{item.flow == 'in'}}" class="msg_list_left_box" id="item{{index}}">
           <view style='margin-right:20rpx;margin-top:10rpx;width: 60rpx;height: 60rpx;'>
-            <image class="headerImage" src='{{userHeaderUrl==""? "/images/foot.jpg":userHeaderUrl}}'></image>
+            <image class="headerImage" src='{{userHeaderUrl==""? "/images/cgys.jpg":userHeaderUrl}}'></image>
           </view>
           <image wx:if="{{item.type=='TIMImageElem'}}"
             style="width:{{item.payload.width}}px;height:{{item.payload.height}}px;" src="{{item.payload.url}}"
@@ -83,7 +83,7 @@
             </view>
           </view>
           <view style='margin-left:20rpx;margin-top:10rpx;width: 60rpx;height: 60rpx;'>
-            <image class="headerImage" src='{{headerUrl==""? "/images/foot.jpg":headerUrl}}'></image>
+            <image class="headerImage" src='{{headerUrl==""? "/images/cgys.jpg":headerUrl}}'></image>
           </view>
         </view>
       </block>

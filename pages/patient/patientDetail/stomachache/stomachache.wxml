@@ -30,7 +30,7 @@
         </view>
         <view>
           <text class="keyStyle">补充：</text>
-          <text class="valStyle">{{item.ftRemark}}</text>
+          <text class="valStyle">{{item.ftRemark == null?'无': item.ftRemark}}</text>
         </view>
         <view>
           <text class="keyStyle">腹胀：</text>
@@ -38,7 +38,7 @@
         </view>
         <view>
           <text class="keyStyle">补充：</text>
-          <text class="valStyle">{{item.fzRemark}}</text>
+          <text class="valStyle">{{item.fzRemark == null?'无': item.fzRemark}}</text>
         </view>
       </view>
     </block>

@@ -1,5 +1,5 @@
 // pages/bindNum/bindNum.js
-import {BindNumModle} from "./bindNUm_modle.js"
+import { BindNumModle } from "./bindNUm_modle.js"
 var utils = require("../../utils/util.js");
 const bindNumModle = new BindNumModle();
 Page({
@@ -13,32 +13,32 @@ Page({
     timeText: "获取验证码",
   },
 
-  getVarification(){
-   
+  getVarification() {
+
     let that = this;
-    if (this.data.timeText!="获取验证码"){
+    if (this.data.timeText != "获取验证码") {
       return;
     }
-    if (this.data.phone==null){
+    if (this.data.phone == null) {
       wx.showToast({
         title: '手机号码不能为空',
         icon: "none"
       })
       return;
     }
- 
-    if(utils.isMobile(this.data.phone)){
-        wx.showLoading({
-            title: '加载中',
-        })
-        bindNumModle.sendSms(this.data.phone, (res)=>{
-          console.log(res);
-          
+
+    if (utils.isMobile(this.data.phone)) {
+      wx.showLoading({
+        title: '加载中',
+      })
+      bindNumModle.sendSms(this.data.phone, (res) => {
+        console.log(res);
+
         wx.hideLoading();
         let num = 60;
         let timer;
         function test() {
-          
+
           that.setData({
             timeText: num + "s"
           })
@@ -51,13 +51,13 @@ Page({
           num--;
         }
         timer = setInterval(test, 1000);
-      
+
       });
 
-    }else{
+    } else {
       wx.showToast({
         title: '手机号码输入有误',
-        icon:  "none"
+        icon: "none"
       })
     }
   },
@@ -71,15 +71,15 @@ Page({
       code: e.detail.value
     })
   },
-  bindUser:function(){
+  bindUser: function () {
     wx.showLoading({
       title: '加载中',
     })
-    bindNumModle.bindDoctor(this.data.phone,this.data.code,(res)=>{
+    bindNumModle.bindDoctor(this.data.phone, this.data.code, (res) => {
       console.log(res);
       wx.setStorageSync('isExist', "1");
       wx.setStorageSync('tencentImUser', res.tencentImUser);
-        wx.setStorageSync('tencentImPassword', res.tencentImPassword);
+      wx.setStorageSync('tencentImPassword', res.tencentImPassword);
       wx.navigateBack({
 
       });

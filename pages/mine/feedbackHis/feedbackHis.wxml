@@ -34,7 +34,7 @@
         </view>
         <view style=" margin-bottom:20rpx">
           <text>产品：</text>
-          <text class="fontWeight">{{item.vendorName}} {{item.goodsName}} {{item.goodsModel}}</text>
+          <text class="fontWeight">{{item.vendorName}} {{item.goodsName}} </text>
         </view>
         <view style=" margin-bottom:20rpx">
           <text>描述：</text>

@@ -15,17 +15,13 @@ Page({
     ManufacturerValue: "",
     ManufacturerList: [],
     InstrumentList: [],
-    insIndex: 0,
-    typeIndex: 0,
-    insname: "请选择",
-    insId: "",
-    typeId: "",
-    modleList: [],
+    InstrumentName: "请选择",
+    InstrumentValue: "",
     instrCondition: "",
-    tempData:[],
-    travelResource:[],
-    setState:1,
-    picNum:0,
+    tempData: [],
+    travelResource: [],
+    setState: 1,
+    picNum: 0,
   },
   selectType: function () {
     if (this.data.ManufacturerValue == "" || this.data.ManufacturerValue == null || this.data.ManufacturerValue == undefined) {
@@ -37,30 +33,16 @@ Page({
     } else {
       this.setData({
         searchTimerPopupShow: true,
-        modleList: this.data.InstrumentList[0].models
       });
     }
   },
   done: function (e) {
     let that = this
-    var insId = this.data.InstrumentList[this.data.insIndex].id
-    console.log(insId);
-
-    if (this.data.InstrumentList[this.data.insIndex].models.length <= 0) {
-      that.setData({
-        insname: this.data.InstrumentList[this.data.insIndex].name,
-        insId: insId,
-        searchTimerPopupShow: false,
-      })
-    } else {
-      var typeId = this.data.InstrumentList[this.data.insIndex].models[this.data.typeIndex].id
-      that.setData({
-        insname: this.data.InstrumentList[this.data.insIndex].name + '-' + this.data.InstrumentList[this.data.insIndex].models[this.data.typeIndex].model,
-        insId: insId,
-        typeId: typeId,
-        searchTimerPopupShow: false,
-      })
-    }
+    var typeId = this.data.InstrumentList[this.data.insIndex].models[this.data.typeIndex].id
+    that.setData({
+      typeId: typeId,
+      searchTimerPopupShow: false,
+    })
 
   },
   clear: function () {
@@ -104,15 +86,13 @@ Page({
     })
     this.getInstrumentList()
   },
-  // // 选择器械类型
+  // // 选择类型
   bindchange: function (e) {
-    var qxindex = e.detail.value[0]
-    var xhindex = e.detail.value[1]
     let that = this
+    let ManufacturerIndex = e.detail.value
     that.setData({
-      insIndex: qxindex,
-      typeIndex: xhindex,
-      modleList: this.data.InstrumentList[qxindex].models
+      InstrumentName: that.data.InstrumentList[ManufacturerIndex].name,
+      InstrumentValue: that.data.InstrumentList[ManufacturerIndex].id,
     })
 
   },
@@ -126,86 +106,86 @@ Page({
     })
   },
   // 上传图片
-  delPic(e){
+  delPic(e) {
     const index = e.currentTarget.dataset.index;
     let newTempData = this.data.tempData;
     let travelResource = this.data.travelResource;
     newTempData.splice(index, 1);
-    travelResource.splice(index,1);
+    travelResource.splice(index, 1);
     this.setData({
-        tempData:newTempData,
-        travelResource: travelResource
+      tempData: newTempData,
+      travelResource: travelResource
     });
     this.setData({
-        picNum:this.data.picNum-1
+      picNum: this.data.picNum - 1
     });
     console.log(this.data.tempData);
     console.log(this.data.travelResource);
-},
-  uploadPic(){
+  },
+  uploadPic() {
     let that = this;
-    if(!this.data.setState){
-        return false;
+    if (!this.data.setState) {
+      return false;
     }
     wx.chooseImage({
-        count: 9-that.data.picNum,
-        success(res) {
-            const tempFilePaths = res.tempFilePaths
-            let newTempFilePaths = tempFilePaths.map((tempFile)=>{
-                return {
-                    progress : 0,
-                    url: tempFile,
-                    flag:1
-                }
-            });
-            let picNum = that.data.picNum+res.tempFilePaths.length;
-            that.setData({
-                tempData: that.data.tempData.concat(newTempFilePaths),
-                setState:0,
-                picNum: picNum
-            });
-            wx.showLoading({
-                title: '上传图片中',
-            })
-            uploadutil.uploadImg(tempFilePaths,res=>{
-                let newPicInfo = res.map((pic,index)=>{
-                    console.log(index);
-                    console.log(res.length);
-                    let picUrl = pic.data;
-                    that.setData({
-                        travelResource:that.data.travelResource.concat(picUrl),
-                        setState:1
-                    });
-                    if(index == res.length-1){
-                        wx.hideLoading();
-                    }
-                });
-                console.log(that.data.travelResource);
-            },err=>{
-                console.log(err);
-            },upData=>{
-                let file = upData['file'];
-                let tempData = that.data.tempData;
-                tempData.map((temp,index)=>{
-                    if (temp.url == file){
-                        temp.progress = upData["progress"];
-                    }
-                }); 
-                that.setData({
-                    tempData:tempData
-                });
-            });
-        },
-        fail(err){
-            if (err.errMsg ==="chooseImage:fail cancel"){
-                wx.showToast({
-                    title: '取消选择',
-                    icon: "none"
-                    })
-                }
-            }
+      count: 9 - that.data.picNum,
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        let newTempFilePaths = tempFilePaths.map((tempFile) => {
+          return {
+            progress: 0,
+            url: tempFile,
+            flag: 1
+          }
+        });
+        let picNum = that.data.picNum + res.tempFilePaths.length;
+        that.setData({
+          tempData: that.data.tempData.concat(newTempFilePaths),
+          setState: 0,
+          picNum: picNum
+        });
+        wx.showLoading({
+          title: '上传图片中',
         })
-    },
+        uploadutil.uploadImg(tempFilePaths, res => {
+          let newPicInfo = res.map((pic, index) => {
+            console.log(index);
+            console.log(res.length);
+            let picUrl = pic.data;
+            that.setData({
+              travelResource: that.data.travelResource.concat(picUrl),
+              setState: 1
+            });
+            if (index == res.length - 1) {
+              wx.hideLoading();
+            }
+          });
+          console.log(that.data.travelResource);
+        }, err => {
+          console.log(err);
+        }, upData => {
+          let file = upData['file'];
+          let tempData = that.data.tempData;
+          tempData.map((temp, index) => {
+            if (temp.url == file) {
+              temp.progress = upData["progress"];
+            }
+          });
+          that.setData({
+            tempData: tempData
+          });
+        });
+      },
+      fail(err) {
+        if (err.errMsg === "chooseImage:fail cancel") {
+          wx.showToast({
+            title: '取消选择',
+            icon: "none"
+          })
+        }
+      }
+    })
+  },
 
   // 保存
   btnSave: function (e) {
@@ -224,8 +204,7 @@ Page({
         userType: 0,
         content: that.data.instrCondition,
         vendorId: that.data.ManufacturerValue,
-        goodsId: that.data.insId,
-        goodsModelId: that.data.typeId,
+        goodsId: that.data.InstrumentValue,
         photos: that.data.travelResource
       }
       wx.showLoading({

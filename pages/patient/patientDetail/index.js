@@ -1,5 +1,7 @@
 // pages/patientDetail/index.js
 var utils = require("../../../utils/util.js");
+import { TimUtils } from "../../../utils/TimUtils.js"
+const timUtils = new TimUtils();
 import { Matter, UserInfo, Maint, FollowMore } from "./index.modle"
 let MatterInfo = new Matter();
 let userInfo = new UserInfo();
@@ -78,7 +80,6 @@ Page({
     });
     FollowMoreInfo.getFollowInfo(this.data.patientId, (res) => {
       console.log(res, 333333333333333333);
-
       this.setData({
         isFinsh: res
       })
@@ -161,7 +162,7 @@ Page({
   ejectment: function () {
     const id = this.data.maintenanceId
     wx.navigateTo({
-      url: '/pages/patient/patientDetail/feedbackDay/feedbackDay'
+      url: '/pages/patient/patientDetail/feedbackDay/feedbackDay?id='+id
     })
   },
   // 跳转到腹痛

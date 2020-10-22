@@ -1,15 +1,9 @@
 function getCurrentDate() {
   var myDate = new Date();
   myDate.getFullYear();
-  var month = myDate.getMonth() + 1;
-  var date = myDate.getDate();
-  if (month < 10) {
-    month = '0' + month
-  }
-  if (date < 10) {
-    date = '0' + date
-  }
-  return myDate.getFullYear() + '-' + month + '-' + date;
+  myDate.getMonth();
+  myDate.getDate();
+  return myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate();
 }
 function getDataSet(event, key) {
   return event.currentTarget.dataset[key];

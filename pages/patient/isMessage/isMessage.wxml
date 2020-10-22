@@ -31,12 +31,6 @@
       </picker>
     </view>
     <view class="infoList">
-      <text class="fontWeight">选择手术方式</text>
-      <picker bindchange="bindMethodChange" value="{{dictLabel}}" range="{{MethodList}}" range-key="dictLabel">
-        <view class="user_info_sex fontColor">{{dictLabel}}</view>
-      </picker>
-    </view>
-    <view class="infoList">
       <text class="fontWeight">选择使用器械品牌</text>
       <picker bindchange="bindManufacturerChange" value="{{ManufacturerName}}" range="{{ManufacturerList}}"
         range-key="name">

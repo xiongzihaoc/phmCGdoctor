@@ -1,27 +1,6 @@
 import { Maint } from "./feedbackDay.modle"
 let MaintInfo = new Maint();
 var utils = require("../../../../utils/util");
-const date = new Date()
-const years = []
-const months = []
-const days = []
-for (let i = 1990; i <= date.getFullYear(); i++) {
-  years.push(i)
-}
-for (let i = 1; i <= 12; i++) {
-  if (i < 10) {
-    i = '0' + i
-  }
-  months.push(i)
-}
-
-for (let i = 1; i <= 31; i++) {
-  if (i < 10) {
-    i = '0' + i
-  }
-  days.push(i)
-}
-
 import * as echarts from '../../../../ec-canvas/echarts';
 
 var dataList = [];
@@ -36,20 +15,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    timeType: 1,
-    startTime: "",
-    endTime: "",
-    startDate: "",
-    endDate: "",
-    // 时间选择器
-    searchTimerPopupShow: false,
-    // 筛选选择
-    closeIconShow: false,
-    years,
-    months,
-    days,
-    value: [],
-    chooseTime: "",
     navList: [
       { id: 1, name: "排出量" },
       { id: 2, name: "导管下行" },
@@ -83,11 +48,9 @@ Page({
   },
   setOption: function (Chart) {
     console.log(333);
-
     Chart.clear();  // 清除
     Chart.setOption(this.getOption());  //获取新数据
     console.log(444);
-
   },
   getOption: function () {
     console.log(111);
@@ -97,20 +60,19 @@ Page({
     let navNum = that.data.navNum
     let infoData = []
     console.log(dataList);
-    
+
     if (navNum == 1) {
       infoData = dataList.map(item => item.output)
     } else {
       infoData = dataList.map(item => item.ductHight)
     }
-
     // 指定图表的配置项和数据
     var option = {
       xAxis: {
         type: 'category',
         data: dataList.map(item => (item.createTime).slice(5)),
         axisLabel: {
-          interval: 1,
+          interval: 0,
           textStyle: {   //textStyle里面写x轴下的字体的样式
             color: '#a8a8a8',
             fontSize: 13
@@ -120,7 +82,7 @@ Page({
           show: true,  //这里的show用于设置是否显示x轴那一条线 默认为true
           lineStyle: { //lineStyle里面写x轴那一条线的样式
             color: '#a8a8a8',
-            width: 2,    //轴线的粗细 我写的是2 最小为0，值为0的时候线隐藏
+            width: 1,    //轴线的粗细 我写的是2 最小为0，值为0的时候线隐藏
           }
         },
         axisTick: {
@@ -130,19 +92,27 @@ Page({
       },
       yAxis: {
         type: 'value',
+        scale: true,
         axisLabel: {
-          interval: 1,
+          interval: 0,
           textStyle: {   //textStyle里面写x轴下的字体的样式
             color: '#a8a8a8',
             fontSize: 13
+          },
+          formatter: function (value) {
+            if (navNum == 1) {
+              return value + "L";
+            } else {
+              return value + "cm";
+            }
           }
         },
         axisLine: {
           show: false,  //这里的show用于设置是否显示x轴那一条线 默认为true
-          lineStyle: { //lineStyle里面写x轴那一条线的样式
-            color: '#a8a8a8',
-            width: 2,    //轴线的粗细 我写的是2 最小为0，值为0的时候线隐藏
-          }
+          // lineStyle: { //lineStyle里面写x轴那一条线的样式
+          //   color: '#a8a8a8',
+          //   width: 2,    //轴线的粗细 我写的是2 最小为0，值为0的时候线隐藏
+          // }
         },
         axisTick: {
           show: false,  //是否显示网状线 默认为true
@@ -151,10 +121,9 @@ Page({
       },
       dataZoom: [{
         type: 'inside',
-        throttle: '50',
-        // minValueSpan: 4,
-        start: 0,
-        end: 100
+        show: true,
+        startValue: 0,
+        endValue: 5,
       }],
       series: [{
         data: infoData,
@@ -186,7 +155,6 @@ Page({
           } else {
             tipString = `${params[0].value} cm`;
           }
-          
           return tipString;
         }
       },
@@ -210,106 +178,18 @@ Page({
     MaintInfo.getDayfeedbackInfo(this.data.startTime, this.data.endTime, (res) => {
       let outputArr = res.data
       console.log(outputArr);
-      
+
       that.setData({
         outputList: outputArr
       })
       this.init_echarts(); //初始化图表
-
     });
-  },
-  selectTimer: function () {
-    if (this.data.startTime == '') {
-      this.setData({
-        startTime: utils.getCurrentDate(),
-      });
-      console.log(this.data.startTime);
-    }
-    if (this.data.endTime == '') {
-      this.setData({
-        endTime: utils.getCurrentDate(),
-      });
-    }
-    this.setData({
-      searchTimerPopupShow: true
-    });
-  },
-  // 清除所选时间
-  closeIcon: function (e) {
-    this.setData({
-      closeIconShow: false,
-      feedbackRecordList: [],
-      chooseTime: "",
-      startTime: "",
-      endTime: "",
-      startDate: "",
-      endDate: "",
-    });
-    this.getDayfeedbackInfo()
-  },
-  done: function () {
-    // console.log(this.data.startTime);
-    var start = new Date(this.data.startTime).getTime()
-    var end = new Date(this.data.endTime).getTime()
-    if (start > end) {
-      wx.showToast({
-        title: '起始时间不能大于结束时间',
-        icon: "none"
-      })
-      return
-    } else {
-      console.log(this.data.startTime);
-      console.log(this.data.endTime);
-      this.setData({
-        closeIconShow: true,
-        feedbackRecordList: [],
-        chooseTime: this.data.startTime + " / " + this.data.endTime,
-        searchTimerPopupShow: false,
-      });
-      this.getDayfeedbackInfo()
-    }
-  },
-  clear: function () {
-    this.setData({
-      searchTimerPopupShow: false
-    });
-  },
-  changeTimerType: function (e) {
-    var type = utils.getDataSet(e, "type");
-    this.setData({
-      timeType: type
-    });
-  },
-  bindChange(e) {
-    console.log(e);
-    let that = this;
-    const val = e.detail.value;
-    if (this.data.timeType == 1) {
-      this.setData({
-        startTime: that.data.years[val[0]] + "-" + that.data.months[val[1]] + "-" + that.data.days[val[2]],
-        startDate: that.data.years[val[0]] + "-" + that.data.months[val[1]] + "-" + that.data.days[val[2]]
-      });
-    } else {
-      this.setData({
-        endTime: that.data.years[val[0]] + "-" + that.data.months[val[1]] + "-" + that.data.days[val[2]],
-        endDate: that.data.years[val[0]] + "-" + that.data.months[val[1]] + "-" + that.data.days[val[2]]
-      });
-    }
-    console.log(this.data.startTime);
-    console.log(this.data.endTime);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let that = this;
-    let current = utils.getCurrentDate().split("-");
-    current.forEach(element => {
-      that.setData({
-        value: that.data.value.concat(element - 1)
-      });
-    });
     this.echartsComponnet = this.selectComponent('#mychart');
     this.getDayfeedbackInfo()
   },

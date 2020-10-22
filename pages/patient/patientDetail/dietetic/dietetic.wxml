@@ -34,7 +34,7 @@
         </view>
         <view>
           <text class="keyStyle">补充：</text>
-          <text class="valStyle">{{item.foodRemark}}</text>
+          <text class="valStyle">{{item.foodRemark == null?'无': item.foodRemark}}</text>
         </view>
       </view>
     </block>

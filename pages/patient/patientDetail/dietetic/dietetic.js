@@ -57,8 +57,9 @@ Page({
       title: '加载中...',
     });
     MatterInfo.getMatterInfo(this.data.startTime, this.data.endTime, (res) => {
+      let historyQues = res.data
       that.setData({
-        historyQues: res.data
+        historyQues: historyQues
       })
     });
   },

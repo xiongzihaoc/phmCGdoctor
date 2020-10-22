@@ -13,6 +13,6 @@
 	</view>
 	<view class="infoList">
 		<text class="fontWeight">医院科室</text>
-		<text class="user_info_name fontColor">{{hospitalName}}</text>
+		<text class="user_info_name fontColor">{{hospitalName == null?'' : hospitalName}}</text>
 	</view>
 </view>

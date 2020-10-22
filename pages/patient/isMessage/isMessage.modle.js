@@ -121,11 +121,10 @@ class Patient extends Comm {
       data: {
         uuid: messageObj.uuid,
         doctorUuid: messageObj.doctoruuid,
-        prepuceOperateTime: messageObj.prepuceOperateTime,
-        prepuceOperateMethod: messageObj.prepuceOperateMethod,
+        operateTime: messageObj.prepuceOperateTime,
         feedbackContent: messageObj.feedbackContent,
         vendorId: messageObj.vendorId,
-        goodsModelId: messageObj.goodsModelId,
+        goodsId: messageObj.goodsId,
       },
       sCallBack: res => {
         wx.hideLoading();

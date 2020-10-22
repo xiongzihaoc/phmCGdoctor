@@ -1,30 +1,22 @@
 <view class="box">
 	<view class="infoList">
 		<text class="fontWeight">身高 (cm)</text>
-		<text class="fontColor">{{userInfo.hight}}cm</text>
+		<text class="fontColor">{{userInfo.hight == null?'': userInfo.hight}}cm</text>
 	</view>
 	<view class="infoList">
 		<text class="fontWeight">体重 (Kg)</text>
-		<text class="fontColor">{{userInfo.weight}}kg</text>
+		<text class="fontColor">{{userInfo.weight == null?'': userInfo.weight}}kg</text>
 	</view>
 	<view class="infoList">
-		<text class="fontWeight">疾病</text>
-		<text class="fontColor">{{userInfo.disease}}</text>
+		<text class="fontWeight">器械品牌</text>
+		<text class="fontColor">{{userInfo.vendorName}}</text>
 	</view>
 	<view class="infoList">
-		<text class="fontWeight">输液港位置</text>
-		<text class="fontColor">{{userInfo.portCathAddress}}</text>
-	</view>
-	<view class="infoList">
-		<text class="fontWeight">输液港品牌</text>
-		<text class="fontColor">{{userInfo.portCathBrand}}</text>
-	</view>
-	<view class="infoList">
-		<text class="fontWeight">植入血管</text>
-		<text class="fontColor">{{userInfo.vessel}}</text>
+		<text class="fontWeight">器械类型</text>
+		<text class="fontColor">{{userInfo.goodsName}}</text>
 	</view>
 	<view class="infoList" style="border-bottom:2rpx solid #f5f5f5;">
 		<text class="fontWeight">手术日期</text>
-		<text class="fontColor">{{userInfo.brithday}}</text>
+		<text class="fontColor">{{userInfo.operateTime}}</text>
 	</view>
 </view>

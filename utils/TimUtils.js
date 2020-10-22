@@ -18,32 +18,31 @@ class TimUtils {
     let promise = tim.login({ userID: userName, userSig: userSig });
     promise.then(function (imResponse) {
       callBack(imResponse.data);
-      console.log("登录成功"); // 登录成功
       if (imResponse.data.repeatLogin === true) {
         // 标识账号已登录，本次登录操作为重复登录。v2.5.1 起支持
-        console.log(imResponse.data.errorInfo);
+
       }
     }).catch(function (imError) {
-      console.warn('login error:', imError); // 登录失败的相关信息
+
     });
   }
 
-  getUserProfile(userList,callBack){
+  getUserProfile(userList, callBack) {
     let promise = tim.getUserProfile({
       userIDList: userList
     });
-    promise.then(function(imResponse) {
+    promise.then(function (imResponse) {
       callBack(imResponse.data); // 存储用户资料的数组 - [Profile]
-    }).catch(function(imError) {
-      console.warn('getUserProfile error:', imError); // 获取其他用户资料失败的相关信息
+    }).catch(function (imError) {
+
     });
   }
-  getTimUserInfo(callBack){
+  getTimUserInfo(callBack) {
     let promise = tim.getMyProfile();
-    promise.then(function(imResponse) {
+    promise.then(function (imResponse) {
       callBack(imResponse.data); // 个人资料 - Profile 实例
-    }).catch(function(imError) {
-      console.warn('getMyProfile error:', imError); // 获取个人资料失败的相关信息
+    }).catch(function (imError) {
+
     });
   }
 
@@ -100,9 +99,6 @@ class TimUtils {
   }
   //创建语音消息
   createAudioMsg(userName, res, callBack) {
-    wx.showToast({
-      title: '创建语音消息',
-    })
     const message = tim.createAudioMessage({
       to: userName,
       conversationType: TxTim.TYPES.CONV_GROUP,
@@ -110,7 +106,7 @@ class TimUtils {
         file: res
       },
       onProgress: function (event) {
-        console.log('file uploading:', event)
+
       }
     });
     this.sendMessage(message, callBack);
@@ -119,20 +115,9 @@ class TimUtils {
   sendMessage(message, callBack) {
     let promise = tim.sendMessage(message);
     promise.then(function (imResponse) {
-      // 发送成功
-      console.log(imResponse);
-      wx.showToast({
-        title: '消息发送成功',
-        icon: "none"
-      });
       callBack(imResponse);
     }).catch(function (imError) {
-      // 发送失败
-      console.warn('sendMessage error:', imError);
-      wx.showToast({
-        title: '消息发送失败',
-        icon: "none"
-      });
+
     });
   }
 
@@ -145,18 +130,14 @@ class TimUtils {
       const conversationList = imResponse.data.conversationList; // 会话列表，用该列表覆盖原有的会话列表
       callBack(conversationList);
     }).catch(function (imError) {
-      console.warn('getConversationList error:', imError); // 获取会话列表失败的相关信息
     });
   }
   getConversationInfo(conversationID) {
     let promise = tim.getConversationProfile(conversationID);
     promise.then(function (imResponse) {
-      console.log("获取成功");
-      console.log(imResponse);
-      // 获取成功
-      console.log(imResponse.data.conversation); // 会话资料
+
     }).catch(function (imError) {
-      console.warn('getConversationProfile error:', imError); // 获取会话资料失败的相关信息
+
     });
   }
   //获取消息列表
@@ -191,8 +172,7 @@ class TimUtils {
       callBack(imResponse);
       // 已读上报成功，指定 ID 的会话的 unreadCount 属性值被置为0
     }).catch(function (imError) {
-      // 已读上报失败
-      console.warn('setMessageRead error:', imError);
+
     });
   }
 }

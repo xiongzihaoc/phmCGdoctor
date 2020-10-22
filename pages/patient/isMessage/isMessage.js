@@ -10,8 +10,6 @@ Page({
   data: {
     userType: "",
     date: "",
-    dictLabel: "请选择",
-    dictValue: "",
     ManufacturerName: "请选择",
     ManufacturerValue: "",
     InstrumentName: "请选择",
@@ -107,15 +105,6 @@ Page({
       date: e.detail.value
     })
   },
-  // 选择手术方式
-  bindMethodChange: function (e) {
-    let that = this
-    let MethodIndex = e.detail.value
-    that.setData({
-      dictLabel: that.data.MethodList[MethodIndex].dictLabel,
-      dictValue: that.data.MethodList[MethodIndex].dictValue
-    })
-  },
   // 选择器械品牌
   bindManufacturerChange: function (e) {
     let that = this
@@ -191,13 +180,6 @@ Page({
       })
       return
     }
-    if (this.data.dictValue == "") {
-      wx.showToast({
-        title: '请选择手术方式',
-        icon: "none",
-      })
-      return
-    }
     if (this.data.InstrumentValue == "") {
       wx.showToast({
         title: '请选择器械类型',
@@ -209,10 +191,9 @@ Page({
       uuid: patientUuid,
       doctoruuid: docUuid,
       prepuceOperateTime: that.data.date,
-      prepuceOperateMethod: that.data.dictValue,
       feedbackContent: that.data.instrCondition,
       vendorId: that.data.ManufacturerValue,
-      goodsModelId: that.data.InstrumentValue,
+      goodsId: that.data.InstrumentValue,
     }
     if (accountType == 0) {
       messageObj.doctoruuid = that.data.doctorValue

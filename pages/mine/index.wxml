@@ -3,7 +3,7 @@
 	<view class="myMessage">
 		<view class="userNameBox">
 			<view>
-				<image src="{{headerUrl==''?'/images/foot.jpg':headerUrl}}"></image>
+				<image src="{{headerUrl==''?'/images/cgys.jpg':headerUrl}}"></image>
 			</view>
 			<view style="margin-left:20rpx" wx:if="{{isLogin}}">
 				<text class="fontWeight" style="display:inline-block;margin-bottom:20rpx;font-size:36rpx;">{{userName}}</text>

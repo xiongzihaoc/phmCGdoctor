@@ -1,6 +1,40 @@
 <view>
-	<view wx:if="{{!isLogin}}" class="noBingDoctorbox" bindtap="login">
-		<text style="display:block;">还未登录,请点击登录</text>
+	<view wx:if="{{!isLogin}}">
+		<view style="text-align: center;">
+			<image style="width:60%;height:400rpx;margin-top:30rpx;" src="/images/app_cover.png"></image>
+			<view style="margin-left:30%">
+				<view style="display:flex;align-items: center;justify-content: left;margin-top:20rpx;">
+					<view style="background:#FDBD2F;width:20rpx;height:20rpx;border-radius: 50%;"></view>
+					<text style="margin-left:20rpx;color:#000000;font-weight:700;font-size:34rpx;">免费注册</text>
+				</view>
+				<view style="display:flex;align-items: center;justify-content: left;margin-top:20rpx;">
+					<view style="background:#FDBD2F;width:20rpx;height:20rpx;border-radius: 50%;"></view>
+					<text style="margin-left:20rpx;color:#000000;font-weight:700;font-size:34rpx;">合理的运动推荐</text>
+				</view>
+				<view style="display:flex;align-items: center;justify-content: left;margin-top:20rpx;">
+					<view style="background:#FDBD2F;width:20rpx;height:20rpx;border-radius: 50%;"></view>
+					<text style="margin-left:20rpx;color:#000000;font-weight:700;font-size:34rpx;">针对性的营养食谱</text>
+				</view>
+				<view style="display:flex;align-items: center;justify-content: left;margin-top:20rpx;">
+					<view style="background:#FDBD2F;width:20rpx;height:20rpx;border-radius: 50%;"></view>
+					<text style="margin-left:20rpx;color:#000000;font-weight:700;font-size:34rpx;">海量的健康知识文章</text>
+				</view>
+
+			</view>
+			<view
+				style="background:#1ADCA9;width:70%;margin:auto;padding:20rpx 0;border-radius:50rpx;color:#fff;margin-top:30rpx;"
+				bindtap="login">
+				<text>立即申请</text>
+			</view>
+			<view style="color:#D6D6D6;font-size:30rpx;margin-top:70rpx;">
+				<text>问题咨询反馈功能</text>
+			</view>
+
+			<view style="display:flex;justify-content:center;color:#D6D6D6;font-size:30rpx;margin-top:40rpx;">
+				<text>一对一在线交流</text>
+				<text style="margin-left:100rpx;">专业人员提供问答</text>
+			</view>
+		</view>
 	</view>
 	<view wx:else style="padding:30rpx;box-sizing: border-box;">
 		<view class="weui-search-bar" style="margin-bottom:20rpx;">
@@ -15,7 +49,7 @@
 		</view>
 		<!-- 患者列表 -->
 		<!-- 为空 -->
-		<view wx:if="{{patientList.length <= 0}}">
+		<view wx:if="{{patientList.length == 0 || patientList == null}}">
 			<block wx:if="{{accountType == 0}}">
 				<view class="title disFlex">
 					<text class="fontWeight quesRecord">患者列表</text>
@@ -30,7 +64,6 @@
 				<view style="color:#a8a8a8;margin-top:10rpx;">暂无患者</view>
 			</view>
 		</view>
-
 		<!-- 不为空 -->
 		<view wx:else>
 			<block wx:if="{{accountType == 0}}">
@@ -54,21 +87,23 @@
 						<view style="display:flex;align-items:baseline;">
 							<view class="setSave">
 								<text class="patientName_ques">随访设置：</text>
-								<image wx:if="{{item.isMatter == 0}}" class="closeImg" src="../../images/close.png"></image>
+								<image wx:if="{{item.isRequire == 0}}" class="closeImg" src="../../images/close.png"></image>
 								<image wx:else class="closeImg" src="../../images/right.png"></image>
 							</view>
 							<view class="setSave">
-								<block wx:if="{{item.isBindingDoctor == 1}}">
-									<view>
-										<text class="patientName_ques" style="margin-left:20rpx;">管理医生：</text>
-										<text class="patientName_ques">{{item.doctorName}}</text>
-									</view>
-								</block>
-								<block wx:else>
-									<view>
-										<text class="patientName_ques"
-											style="margin-left:20rpx;color:red;width:170rpx;verflow: hidden;text-overflow:ellipsis;white-space: nowrap;">未绑定管理医生</text>
-									</view>
+								<block wx:if="{{accountType == 0}}">
+									<block wx:if="{{item.isBindingDoctor == 1}}">
+										<view>
+											<text class="patientName_ques" style="margin-left:20rpx;">管理医生：</text>
+											<text class="patientName_ques">{{item.doctorName}}</text>
+										</view>
+									</block>
+									<block wx:else>
+										<view>
+											<text class="patientName_ques"
+												style="margin-left:20rpx;color:red;width:170rpx;verflow: hidden;text-overflow:ellipsis;white-space: nowrap;">未绑定管理医生</text>
+										</view>
+									</block>
 								</block>
 							</view>
 						</view>

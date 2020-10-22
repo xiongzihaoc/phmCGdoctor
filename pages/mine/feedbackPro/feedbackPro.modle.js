@@ -49,7 +49,6 @@ class Patient extends Comm {
       url: "/api/vendor/feedback",
       contentType: 'application/json',
       data: {
-        goodsModelId: messageObj.goodsModelId,
         goodsId: messageObj.goodsId,
         userType: messageObj.userType,
         vendorId: messageObj.vendorId,

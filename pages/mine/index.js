@@ -121,6 +121,8 @@ Page({
       this.setData({
         isLogin: true
       });
+      let qrcodeSize = that.getQRCodeSize()
+      that.createQRCode(openId, qrcodeSize)
       wx.showLoading({
         title: '加载中...',
       })
